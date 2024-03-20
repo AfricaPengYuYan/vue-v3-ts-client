@@ -7,7 +7,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import {configCompressPlugin} from "./compress";
 import {configImageminPlugin} from "./imagemin";
 import {configStyleImportPlugin} from "./style";
-import {configAutoImportPlugin, configVueComponentsPlugin} from "./unplugin";
+import {configAutoImportPlugin, configVueComponentsPlugin, configVueIconsPlugin} from "./unplugin";
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     const {
@@ -67,6 +67,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     plugins.push(configAutoImportPlugin())
     // unplugin-vue-components
     plugins.push(configVueComponentsPlugin())
+    // unplugin-icons
+    plugins.push(configVueIconsPlugin())
 
     return plugins
 }

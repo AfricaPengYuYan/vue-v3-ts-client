@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
+    "baseUrl": ".",
     "lib": [
       "ES2020",
       "DOM",
@@ -24,6 +25,7 @@
         "./types/*"
       ]
     },
+    // 解决打包报`vue-tsc --noEmit && vite build`的错,忽略所有的声明文件(*.d.ts)的类型检查
     "skipLibCheck": true,
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -33,10 +35,18 @@
     "noEmit": true,
     "jsx": "preserve",
     /* Linting */
-    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "strict": false,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "strictFunctionTypes": false,
   },
   "include": [
     "src/**/*.ts",
