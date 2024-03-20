@@ -1,4 +1,3 @@
-import type {Plugin} from "vite";
 import vue from '@vitejs/plugin-vue'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import legacy from '@vitejs/plugin-legacy'
@@ -7,7 +6,12 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import {configCompressPlugin} from "./compress";
 import {configImageminPlugin} from "./imagemin";
 import {configStyleImportPlugin} from "./style";
-import {configAutoImportPlugin, configVueComponentsPlugin, configVueIconsPlugin} from "./unplugin";
+import {
+    configAutoImportPlugin,
+    configVueComponentsPlugin,
+    configVueIconsPlugin,
+    configVuePurgeIconsPlugin
+} from "./unplugin";
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     const {
@@ -69,6 +73,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     plugins.push(configVueComponentsPlugin())
     // unplugin-icons
     plugins.push(configVueIconsPlugin())
+    plugins.push(configVuePurgeIconsPlugin())
 
     return plugins
 }

@@ -11,5 +11,7 @@ declare module 'vue' {
     'IconCustomMaterialSymbolsLight-AllInboxRounded': typeof import('~icons/custom/material-symbols-light--all-inbox-rounded')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SvgIcon: typeof import('./../../src/components/icon/svg-icon.vue')['default']
+    VIcon: typeof import('./../../src/components/v-icon/index.vue')['default']
   }
 }

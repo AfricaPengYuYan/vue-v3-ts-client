@@ -1,5 +1,7 @@
 // 解决使用 unplugin-auto-import 开发时 VSCode 出现错误提示、并且无法打包问题
 import 'vue-global-api'
+// 使用动态图标 @purge-icons/generated 必须要引入
+import '@purge-icons/generated'
 import {createApp} from 'vue'
 import App from './App.vue'
 import {setupStore} from '@/store'

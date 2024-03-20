@@ -1,6 +1,6 @@
 import Axios, {AxiosInstance, AxiosRequestConfig, CustomParamsSerializer} from 'axios'
-import {PureHttpError, PureHttpRequestConfig, PureHttpResponse, RequestMethods} from './types'
-import NProgress from '../progress'
+import {PureHttpError, PureHttpRequestConfig, PureHttpResponse, RequestMethods} from '#/http'
+import NProgress from './progress'
 import {stringify} from 'qs'
 import {formatToken, getToken} from '@/utils/auth'
 import {useUserInfoStoreHook} from "@/store/modules/userInfo.ts";

@@ -4,6 +4,7 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import {FileSystemIconLoader} from 'unplugin-icons/loaders'
 import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
+import PurgeIcons from 'vite-plugin-purge-icons'
 
 export function configAutoImportPlugin() {
     return AutoImport({
@@ -31,7 +32,7 @@ export function configVueComponentsPlugin() {
         // 指定文件生成路径
         dts: 'vite/unplugin/components.d.ts',
         // 组件的有效文件扩展名。
-        extensions: ['vue'],
+        extensions: ['vue', 'tsx', 'jsx'],
         // 允许子目录作为组件的命名空间前缀。
         directoryAsNamespace: false,
         deep: true,
@@ -46,5 +47,14 @@ export function configVueIconsPlugin() {
             custom: FileSystemIconLoader('./src/assets/icons'),
         },
         autoInstall: true,
+    })
+}
+
+export function configVuePurgeIconsPlugin() {
+    return PurgeIcons({
+        /* PurgeIcons Options */
+        // globs for searching source file to analyze
+        content: ['**/*.vue'], // scan for .vue file as well
+        format: 'mjs',
     })
 }

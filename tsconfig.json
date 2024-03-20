@@ -34,6 +34,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -46,7 +48,7 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "experimentalDecorators": true,
-    "strictFunctionTypes": false,
+    "strictFunctionTypes": false
   },
   "include": [
     "src/**/*.ts",
