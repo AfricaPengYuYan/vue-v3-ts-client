@@ -2,4 +2,3 @@ import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-i
 export function configStyleImportPlugin() {
     return createStyleImportPlugin({ resolves: [ElementPlusResolve()] })
 }
-

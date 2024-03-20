@@ -12,10 +12,9 @@ export function getToken() {
 
 /**
  * 设置`token`
- * @param data
+ * @param access_token
  */
-export function setToken(data) {
-    const {access_token} = data
+export function setToken(access_token: string) {
     Cookies.set(TokenKey, access_token)
 }
 

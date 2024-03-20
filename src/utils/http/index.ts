@@ -1,5 +1,5 @@
 import Axios, {AxiosInstance, AxiosRequestConfig, CustomParamsSerializer} from 'axios'
-import {PureHttpError, PureHttpRequestConfig, PureHttpResponse, RequestMethods} from './type.d'
+import {PureHttpError, PureHttpRequestConfig, PureHttpResponse, RequestMethods} from './types'
 import NProgress from '../progress'
 import {stringify} from 'qs'
 import {formatToken, getToken} from '@/utils/auth'
@@ -19,6 +19,8 @@ const defaultConfig: AxiosRequestConfig = {
         serialize: stringify as unknown as CustomParamsSerializer,
     },
 }
+
+const whiteList = ['/refreshToken', '/login']
 
 class PureHttp {
     constructor() {
@@ -55,8 +57,8 @@ class PureHttp {
                 // 开启进度条动画
                 NProgress.start()
                 // 优先判断post/get等方法是否传入回掉，否则执行初始化设置等回掉
-                if (typeof config.beforeRequestCallback === 'function') {
-                    config.beforeRequestCallback(config)
+                if (Object.prototype.toString.call(config.beforeResponseCallback) === "[object Function]") {
+                    config.beforeRequestCallback!(config)
                     return config
                 }
                 if (PureHttp.initConfig.beforeRequestCallback) {
@@ -64,14 +66,14 @@ class PureHttp {
                     return config
                 }
                 /** 请求白名单，放置一些不需要token的接口（通过设置请求白名单，防止token过期后再请求造成的死循环问题） */
-                const whiteList = ['/refreshToken', '/login']
-                return whiteList.some((v) => config.url.indexOf(v) > -1)
-                    ? config
-                    : new Promise((resolve) => {
+                if (whiteList.some((v) => config.url.indexOf(v) > -1)) {
+                    return config
+                } else {
+                    return new Promise((resolve) => {
                         const data = getToken()
                         if (data) {
                             const now = new Date().getTime()
-                            const expired = parseInt(data.expires) - now <= 0
+                            const expired = Number(data.expires) - now <= 0
                             if (expired) {
                                 if (!PureHttp.isRefreshing) {
                                     PureHttp.isRefreshing = true
@@ -97,6 +99,7 @@ class PureHttp {
                             resolve(config)
                         }
                     })
+                }
             },
             (error) => {
                 return Promise.reject(error)
@@ -113,8 +116,8 @@ class PureHttp {
                 // 关闭进度条动画
                 NProgress.done()
                 // 优先判断post/get等方法是否传入回掉，否则执行初始化设置等回掉
-                if (typeof $config.beforeResponseCallback === 'function') {
-                    $config.beforeResponseCallback(response)
+                if (Object.prototype.toString.call($config.beforeResponseCallback) === "[object Function]") {
+                    $config.beforeResponseCallback!(response)
                     return response.data
                 }
                 if (PureHttp.initConfig.beforeResponseCallback) {
@@ -136,17 +139,13 @@ class PureHttp {
 
     /** 通用请求工具函数 */
     public request<T>(method: RequestMethods, url: string, param?: AxiosRequestConfig, axiosConfig?: PureHttpRequestConfig): Promise<T> {
-        const config = {
-            method, url,
-            ...param,
-            ...axiosConfig,
-        } as PureHttpRequestConfig
+        const config = {method, url, ...param, ...axiosConfig} as PureHttpRequestConfig
 
         // 单独处理自定义请求/响应回掉
         return new Promise((resolve, reject) => {
             PureHttp.axiosInstance
                 .request(config)
-                .then((response: undefined) => {
+                .then((response) => {
                     resolve(response)
                 })
                 .catch((error) => {

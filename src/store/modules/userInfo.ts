@@ -1,13 +1,17 @@
 import store from '@/store'
 
-export const useUserInfoStore = defineStore('user-info', {
+export const useUserInfoStore = defineStore('userInfo', {
     state: () => ({
         // 用户信息
         userInfo: null,
         // 用户名
         userName: "",
+        // 用户头像
+        avatar: "",
         // 页面级别权限
-        roles: []
+        roles: [],
+        // 权限
+        permissions: []
     }),
     getters: {},
     actions: {

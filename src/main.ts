@@ -7,7 +7,7 @@ import {setupRouter} from '@/router'
 import {getServerConfig} from "@/config";
 import {injectResponsiveStorage} from "@/utils/responsive.ts";
 
-import './style.css'
+import "./main.css"
 
 const app = createApp(App)
 getServerConfig(app).then(async (config) => {
