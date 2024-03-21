@@ -1,9 +1,13 @@
+type FormConfigType = {
+    rules: any
+}
+
 /**
  * 表单
  * @param initForm 初始化表单数据
  * @param config 表单配置 { rules:{} }
  */
-export function useForm(initForm, config = null) {
+export function useForm(initForm, config?: FormConfigType) {
     const _init = () => {
         if (["[object Object]", "object Array"].includes(Object.prototype.toString.call(initForm))) {
             return initForm
@@ -29,7 +33,7 @@ export function useForm(initForm, config = null) {
      * @param callback 回调函数
      */
     const submit = async (callback) => {
-        await formRef.value?.validate((valid, fields) => {
+        await formRef.value?.validate((valid) => {
             if (valid) {
                 callback()
             }
