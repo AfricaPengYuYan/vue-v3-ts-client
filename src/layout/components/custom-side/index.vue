@@ -3,7 +3,7 @@ import Logo from './logo.vue'
 </script>
 
 <template>
-  <aside class="aside-container">
+  <aside class="aside-container h-dvh">
     <Logo></Logo>
   </aside>
 </template>

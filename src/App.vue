@@ -17,5 +17,5 @@ const currentLocale = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-
+@import "@/assets/styles/reset-element";
 </style>

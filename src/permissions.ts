@@ -8,7 +8,7 @@ export function setupPermissions(router: Router) {
         NProgress.start()
 
         // 暂时设置为未登录
-        const hasToken = false
+        // const hasToken = false
         // if (hasToken) {
         //
         // } else {
