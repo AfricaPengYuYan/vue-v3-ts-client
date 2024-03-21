@@ -8,10 +8,10 @@ interface IconProps {
   name?: string
   icon?: string
   color?: string
-  size?: number | string
+  size?: number
 }
 
-const props = defineProps<IconProps>()
+const props = withDefaults(defineProps<IconProps>(), {})
 const {name, icon, color, size} = toRefs(props)
 
 // 是否传入name字段

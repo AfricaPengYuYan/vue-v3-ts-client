@@ -9,19 +9,21 @@ export function setupPermissions(router: Router) {
 
         // 暂时设置为未登录
         const hasToken = false
-        if (hasToken) {
+        // if (hasToken) {
+        //
+        // } else {
+        //     if (to.path !== '/login') {
+        //         if (routesWhiteList.includes(to.path)) {
+        //             next()
+        //         } else {
+        //             next({path: '/login', replace: true})
+        //         }
+        //     } else {
+        //         next()
+        //     }
+        // }
 
-        } else {
-            if (to.path !== '/login') {
-                if (routesWhiteList.includes(to.path)) {
-                    next()
-                } else {
-                    next({path: '/login', replace: true})
-                }
-            } else {
-                next()
-            }
-        }
+        next()
     })
 
     router.afterEach(async (to: any) => {

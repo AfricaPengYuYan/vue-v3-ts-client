@@ -32,7 +32,7 @@ export function configVueComponentsPlugin() {
         // 指定文件生成路径
         dts: 'vite/unplugin/components.d.ts',
         // 组件的有效文件扩展名。
-        extensions: ['vue', 'tsx', 'jsx'],
+        extensions: ['vue'],
         // 允许子目录作为组件的命名空间前缀。
         directoryAsNamespace: false,
         deep: true,

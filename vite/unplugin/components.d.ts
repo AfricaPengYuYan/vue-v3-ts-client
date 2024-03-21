@@ -8,10 +8,10 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
-    'IconCustomMaterialSymbolsLight-AllInboxRounded': typeof import('~icons/custom/material-symbols-light--all-inbox-rounded')['default']
+    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SvgIcon: typeof import('./../../src/components/icon/svg-icon.vue')['default']
+    VButton: typeof import('./../../src/components/v-button/index.vue')['default']
     VIcon: typeof import('./../../src/components/v-icon/index.vue')['default']
   }
 }

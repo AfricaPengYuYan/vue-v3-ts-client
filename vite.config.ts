@@ -23,5 +23,23 @@ export default defineConfig(({command, mode}: ConfigEnv): UserConfig => {
             },
             extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
         },
+        // 预加载构建配置,vite在启动之初就对以下资源进行预打包（首屏性能)
+        optimizeDeps: {
+            esbuildOptions: {
+                target: "es2020"
+            },
+            include: [
+                'element-plus',
+                'element-plus/es',
+                '@element-plus/icons-vue',
+                'vue',
+                'pinia',
+                'sass',
+                'vue-router',
+                'axios',
+                'qs',
+                'tailwindcss/plugin',
+            ]
+        }
     }
 })

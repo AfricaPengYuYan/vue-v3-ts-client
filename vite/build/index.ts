@@ -2,6 +2,12 @@
 export function createViteBuild() {
     return {
         /**
+         * 混淆器
+         * terser 构建后文件体积更小，'terser' | 'esbuild'
+         */
+        minify: 'esbuild',
+
+        /**
          * 类型： string | string[]
          * 默认: modules
          * 设置最终构建的浏览器兼容目标

@@ -3,7 +3,22 @@ import {getHistoryMode} from "@/utils";
 import {setupPermissions} from "@/permissions";
 import {AppRouteRecordRaw} from "#/router";
 
+const Layout = () => import("@/layout/index.vue");
+
 export const constantRoutes: AppRouteRecordRaw[] = [
+    {
+        path: '/',
+        name: "Home",
+        redirect: "/welcome",
+        component: Layout,
+        children: [
+            {
+                path: '/welcome',
+                name: 'Index',
+                component: () => import('@/pages/index'),
+            }
+        ]
+    },
     {
         path: '/login',
         name: 'Login',
