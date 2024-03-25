@@ -67,10 +67,14 @@ function handleCurrentChange(value: number) {
 <template>
   <div>
     <el-table :data="props.data" border stripe>
-      <el-table-column v-if="props.index" type="selection" align="center" width="50"/>
-      <el-table-column v-if="props.index" sortable type="index" align="center" width="50"/>
+      <!--      <el-table-column v-if="props.index" type="selection" align="center" width="50"/>-->
+      <!--      <el-table-column v-if="props.index" sortable type="index" align="center" width="50"/>-->
       <el-table-column v-for="(row,index) in props.columns" :key="index" sortable :prop="row.prop" :label="row.label"
-                       align="center"/>
+                       align="center">
+        <template #default="{row}">
+
+        </template>
+      </el-table-column>
       <el-table-column>
         <template #default>
           <slot/>
