@@ -72,7 +72,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     // unplugin-vue-components
     plugins.push(configVueComponentsPlugin())
     // unplugin-icons
-    plugins.push(configVueIconsPlugin())
+    // plugins.push(configVueIconsPlugin())
     plugins.push(configVuePurgeIconsPlugin())
 
     return plugins

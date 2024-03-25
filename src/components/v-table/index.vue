@@ -1,28 +1,19 @@
 <script setup lang="ts">
-type ColumnsType = {
-  prop: string
-  label: string
-}
-type TableProps = {
-  data: any[],
-  columns: ColumnsType[],
-  // 序号
-  index?: boolean
-  // 多选
-  selection?: boolean
+import {TableProps} from "#/table"
+import Column from "@/components/v-table/column.vue";
 
-  page: number
-  pageSize: number
-  // 总数
-  total: number
-  pageSizes?: number[]
-}
 const props = withDefaults(defineProps<TableProps>(), {
-  index: false,
-  selection: false,
-  pageSizes: [10, 50, 100]
+  pageSizes: [10, 50, 100],
+  options: {
+    border: true,
+    stripe: true
+  }
 })
-
+// 插槽
+type TableSlots = {
+  settings(scope: { row: typeof props.data[0] })
+}
+const slots = defineSlots<TableSlots>()
 const emits = defineEmits(["update:page", "update:pageSize", "get"])
 
 const currentPage = computed({
@@ -42,7 +33,6 @@ const currentPageSize = computed({
     emits("update:pageSize", value)
   }
 })
-
 
 function handleSizeChange(value: number) {
   if (currentPage.value * value > props.total) currentPage.value = 1;
@@ -66,23 +56,22 @@ function handleCurrentChange(value: number) {
 
 <template>
   <div>
-    <el-table :data="props.data" border stripe>
-      <!--      <el-table-column v-if="props.index" type="selection" align="center" width="50"/>-->
-      <!--      <el-table-column v-if="props.index" sortable type="index" align="center" width="50"/>-->
-      <el-table-column v-for="(row,index) in props.columns" :key="index" sortable :prop="row.prop" :label="row.label"
-                       align="center">
-        <template #default="{row}">
+    <el-table :data="props.data" v-bind="props.options">
+      <template v-for="(column,index) in props.columns" :key="index">
+        <!-- 多选 -->
+        <el-table-column v-if="column.type === 'selection'" v-bind="column"/>
+        <!-- 序号 -->
+        <el-table-column v-else-if="column.type === 'index'" sortable v-bind="column"/>
 
-        </template>
-      </el-table-column>
-      <el-table-column>
-        <template #default>
-          <slot/>
-        </template>
-      </el-table-column>
+        <column v-else :column="column">
+          <template v-for="slotName in Object.keys($slots)" #[slotName]="scope">
+            <slot :name="slotName" v-bind="scope"/>
+          </template>
+        </column>
+      </template>
     </el-table>
 
-    <div class="">
+    <div class="v-pagination">
       <el-pagination v-model:current-page="currentPage"
                      v-model:page-size="currentPageSize"
                      :page-sizes="props.pageSizes"
@@ -96,5 +85,11 @@ function handleCurrentChange(value: number) {
 </template>
 
 <style scoped lang="scss">
-
+.v-pagination {
+  width: 100%;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 </style>

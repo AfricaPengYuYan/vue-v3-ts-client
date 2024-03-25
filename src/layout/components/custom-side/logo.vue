@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="h-48">
+<div class="">
 
 </div>
 </template>

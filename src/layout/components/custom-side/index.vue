@@ -11,5 +11,11 @@ import Logo from './logo.vue'
 <style scoped lang="scss">
 .aside-container {
   width: 220px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: width .3s;
+  z-index: 1001;
+  background-color: #fff;
 }
 </style>

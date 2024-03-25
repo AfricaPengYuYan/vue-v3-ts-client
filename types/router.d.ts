@@ -9,7 +9,7 @@ export type Component<T = any> =
 /**
  * 路由记录
  */
-declare interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'name' | 'meta' | 'children'> {
+export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'name' | 'meta' | 'children'> {
     name?: string
     meta?: RouteMeta
     component?: Component | string
