@@ -1,7 +1,7 @@
-export function useTable() {
-    const tableData = ref([])
+export function useTable(params: any[]) {
+    const tableData = ref<any[]>(params)
     const tableRef = ref()
-    const tableLoading = ref(false)
+    const tableLoading = ref<boolean>(false)
 
 
     return {

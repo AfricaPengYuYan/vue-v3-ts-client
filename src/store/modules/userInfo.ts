@@ -13,7 +13,9 @@ export const useUserInfoStore = defineStore('userInfo', {
         // 权限
         permissions: []
     }),
-    getters: {},
+    getters: {
+
+    },
     actions: {
         /**
          * 刷新`token`

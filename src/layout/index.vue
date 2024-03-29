@@ -13,12 +13,17 @@ import {CustomSide, CustomHeader, CustomNav, CustomFooter} from './components'
       <section class="app-main">
         <el-scrollbar height="100%">
           <div class="main-content">
-            <router-view></router-view>
+            <router-view v-slot="{ Component, route }">
+              <transition name="el-fade-in-linear">
+                <!--  强制在复用的视图之间进行过渡 -->
+                <component :is="Component" :key="route.path"></component>
+              </transition>
+            </router-view>
+            <custom-footer></custom-footer>
           </div>
         </el-scrollbar>
       </section>
     </div>
-    <custom-footer></custom-footer>
   </div>
 </template>
 

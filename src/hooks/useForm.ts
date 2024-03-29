@@ -13,6 +13,8 @@ export function useForm(initForm, config?: FormConfigType) {
             return initForm
         } else if (Object.prototype.toString.call(initForm) === "[object Function]") {
             return initForm()
+        } else {
+            throw new Error('initForm must be an object or a function that returns an object.');
         }
     }
 
@@ -32,7 +34,7 @@ export function useForm(initForm, config?: FormConfigType) {
      * 表单提交
      * @param callback 回调函数
      */
-    const submit = async (callback) => {
+    const submit = async (callback: () => any) => {
         await formRef.value?.validate((valid) => {
             if (valid) {
                 callback()

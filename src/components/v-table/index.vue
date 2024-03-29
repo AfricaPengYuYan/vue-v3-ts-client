@@ -57,7 +57,7 @@ function handleCurrentChange(value: number) {
 <template>
   <div>
     <el-table :data="props.data" v-bind="props.options">
-      <template v-for="(column,index) in props.columns" :key="index">
+      <template v-for="(column) in props.columns" :key="column.prop">
         <!-- 多选 -->
         <el-table-column v-if="column.type === 'selection'" v-bind="column"/>
         <!-- 序号 -->

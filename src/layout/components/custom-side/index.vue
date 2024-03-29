@@ -17,5 +17,6 @@ import Logo from './logo.vue'
   transition: width .3s;
   z-index: 1001;
   background-color: #fff;
+  border-right: 1px solid #0505050f;
 }
 </style>
