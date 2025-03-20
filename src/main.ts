@@ -25,28 +25,30 @@
  *
  */
 
-import { getServerConfig } from '@/config';
+import { getServerConfig } from '@/config'
 
-import { setupRouter } from '@/router';
+import { setupRouter } from '@/router'
 
-import { setupStore } from '@/store';
-import { injectResponsiveStorage } from '@/utils/responsive.ts';
+import { setupStore } from '@/store'
+import { injectResponsiveStorage } from '@/utils/responsive.ts'
 
-import { createApp } from 'vue';
+import { createApp } from 'vue'
 
-import App from './App.vue';
+import App from './App.vue'
+import { useI18n } from './plugins/i18n'
 // 解决使用 unplugin-auto-import 开发时 VSCode 出现错误提示、并且无法打包问题
-import 'vue-global-api';
+import 'vue-global-api'
 // 一定要在main.ts中导入tailwind.css，防止vite每次hmr都会请求src/style/index.scss整体css文件导致热更新慢的问题
-import '@/assets/styles/tailwind.css';
+import '@/assets/styles/tailwind.css'
 // 引入重置样式
-import '@/assets/styles/reset.scss';
+import '@/assets/styles/reset.scss'
 
-const app = createApp(App);
+const app = createApp(App)
 getServerConfig(app).then(async (config) => {
-    injectResponsiveStorage(app, config);
-    setupStore(app);
+    injectResponsiveStorage(app, config)
+    setupStore(app)
     await setupRouter(app)
         .isReady()
-        .then(() => app.mount('#app'));
-});
+        .then(() => app.use(useI18n))
+        .then(() => app.mount('#app'))
+})

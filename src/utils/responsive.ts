@@ -1,9 +1,10 @@
-import type { App } from 'vue';
-import Storage from 'responsive-storage';
+import type { App } from 'vue'
+import { responsiveStorageNameSpace } from '@/config'
+import Storage from 'responsive-storage'
 
-const nameSpace = 'responsive-';
+export function injectResponsiveStorage(app: App, config: PlatformConfigs) {
+    const nameSpace = responsiveStorageNameSpace()
 
-export function injectResponsiveStorage(app: App, config: ServerConfig) {
     const configObj = Object.assign(
         {
             // 国际化 默认中文zh
@@ -30,12 +31,9 @@ export function injectResponsiveStorage(app: App, config: ServerConfig) {
             },
         },
         config.MultiTagsCache
-            ? {
-                // 默认显示首页tag
-                    tags: Storage.getData('tags', nameSpace),
-                }
+            ? { tags: Storage.getData('tags', nameSpace) } // 默认显示首页tag
             : {},
-    );
+    )
 
-    app.use(Storage, { nameSpace, memory: configObj });
+    app.use(Storage, { nameSpace, memory: configObj })
 }

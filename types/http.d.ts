@@ -1,32 +1,32 @@
-import type { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from 'axios';
+import type { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from 'axios'
 
-export type RequestMethods = Extract<Method, 'get' | 'post' | 'put' | 'delete' | 'patch' | 'option' | 'head'>;
+export type RequestMethods = Extract<Method, 'get' | 'post' | 'put' | 'delete' | 'patch' | 'option' | 'head'>
 
 export interface PureHttpError extends AxiosError {
-    isCancelRequest?: boolean;
+    isCancelRequest?: boolean
 }
 
 export interface PureHttpResponse extends AxiosResponse {
-    config: PureHttpRequestConfig;
+    config: PureHttpRequestConfig
 }
 
 export interface PureHttpRequestConfig extends AxiosRequestConfig {
-    beforeRequestCallback?: (request: PureHttpRequestConfig) => void;
-    beforeResponseCallback?: (response: PureHttpResponse) => void;
-    retryTimes?: number; // 重试次数
-    retryDelay?: number; // 重试延迟
-    withToken?: boolean; // 是否需要token
+    beforeRequestCallback?: (request: PureHttpRequestConfig) => void
+    beforeResponseCallback?: (response: PureHttpResponse) => void
+    retryTimes?: number // 重试次数
+    retryDelay?: number // 重试延迟
+    withToken?: boolean // 是否需要token
 }
 
 export interface HttpResponse<T = any> {
-    code: number;
-    message: string;
-    data: T;
+    code: number
+    message: string
+    data: T
 }
 
 export interface HttpError {
-    code: number;
-    message: string;
+    code: number
+    message: string
 }
 
 export enum HttpStatusCode {
@@ -57,4 +57,4 @@ export const HTTP_ERROR_MESSAGES: Record<HttpStatusCode, string> = {
     [HttpStatusCode.ServiceUnavailable]: '服务不可用',
     [HttpStatusCode.GatewayTimeout]: '网络超时',
     [HttpStatusCode.HttpVersionNotSupported]: 'http版本不支持该请求',
-} as const;
+} as const

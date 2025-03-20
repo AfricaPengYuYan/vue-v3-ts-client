@@ -1,19 +1,21 @@
-import antfu from '@antfu/eslint-config';
+import antfu from '@antfu/eslint-config'
 
 export default antfu({
     // 严格模式
     stylistic: {
         indent: 4, // 缩进4个空格
         quotes: 'single', // 使用单引号
-        semi: true, // 使用分号
+        semi: false, // 使用分号
+        // 移除 commaDangle 配置，避免与 style/comma-dangle 冲突
     },
 
     // JavaScript 配置
     javascript: {
         overrides: {
-            'no-console': 'warn', // console 使用警告
+            'no-console': 'off', // 允许使用 console
             'no-debugger': 'warn', // debugger 使用警告
             'prefer-const': 'error', // 优先使用 const
+            'style/comma-dangle': 'off', // 关闭 style/comma-dangle 规则检查
         },
     },
 
@@ -42,4 +44,4 @@ export default antfu({
 
     // 忽略文件
     ignores: ['dist', 'node_modules', '*.min.*', 'public'],
-});
+})

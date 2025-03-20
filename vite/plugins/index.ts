@@ -1,17 +1,17 @@
-import legacy from '@vitejs/plugin-legacy';
-import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
-import vueSetupExtend from 'vite-plugin-vue-setup-extend';
+import legacy from '@vitejs/plugin-legacy'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
-import { configCompressPlugin } from './compress';
-import { configImageminPlugin } from './imagemin';
-import { configStyleImportPlugin } from './style';
-import { configAutoImportPlugin, configVueComponentsPlugin, configVueIconsPlugin } from './unplugin';
+import { configCompressPlugin } from './compress'
+import { configImageminPlugin } from './imagemin'
+import { configStyleImportPlugin } from './style'
+import { configAutoImportPlugin, configVueComponentsPlugin, configVueIconsPlugin } from './unplugin'
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
-    const { VITE_USE_IMAGEMIN, VITE_USE_COMPRESS, VITE_COMPRESS_DELETE_ORIGIN_FILE, VITE_LEGACY, VITE_COMPRESSION } = viteEnv;
+    const { VITE_USE_IMAGEMIN, VITE_USE_COMPRESS, VITE_COMPRESS_DELETE_ORIGIN_FILE, VITE_LEGACY, VITE_COMPRESSION } = viteEnv
 
-    const plugins = [vue(), vueJsx(), vueSetupExtend()];
+    const plugins = [vue(), vueJsx(), vueSetupExtend()]
 
     if (VITE_LEGACY) {
         const setupLegacy = () => {
@@ -37,26 +37,26 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
                     'esnext.global-this',
                     'esnext.string.match-all',
                 ],
-            });
-        };
-        plugins.push(setupLegacy());
+            })
+        }
+        plugins.push(setupLegacy())
     }
 
     if (isBuild) {
         // vite-plugin-compress
-        VITE_USE_COMPRESS && plugins.push(configCompressPlugin(VITE_COMPRESS_DELETE_ORIGIN_FILE, VITE_COMPRESSION));
+        VITE_USE_COMPRESS && plugins.push(configCompressPlugin(VITE_COMPRESS_DELETE_ORIGIN_FILE, VITE_COMPRESSION))
         // vite-plugin-imagemin
-        VITE_USE_IMAGEMIN && plugins.push(configImageminPlugin());
+        VITE_USE_IMAGEMIN && plugins.push(configImageminPlugin())
     }
 
     // vite-plugin-style-import
-    plugins.push(configStyleImportPlugin());
+    plugins.push(configStyleImportPlugin())
     // unplugin-auto-import
-    plugins.push(configAutoImportPlugin());
+    plugins.push(configAutoImportPlugin())
     // unplugin-vue-components
-    plugins.push(configVueComponentsPlugin());
+    plugins.push(configVueComponentsPlugin())
     // unplugin-icons
-    plugins.push(configVueIconsPlugin());
+    plugins.push(configVueIconsPlugin())
 
-    return plugins;
+    return plugins
 }

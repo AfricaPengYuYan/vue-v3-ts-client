@@ -1,14 +1,14 @@
-import type { ProxyOptions } from 'vite';
+import type { ProxyOptions } from 'vite'
 
-type ProxyTargetList = Record<string, ProxyOptions>;
+type ProxyTargetList = Record<string, ProxyOptions>
 
-const httpsRE = /^https:\/\//;
+const httpsRE = /^https:\/\//
 
 export function createViteServer(viteEnv: ViteEnv) {
-    const { VITE_PORT, VITE_PROXY } = viteEnv;
-    const proxy: ProxyTargetList = {};
+    const { VITE_PORT, VITE_PROXY } = viteEnv
+    const proxy: ProxyTargetList = {}
     for (const [prefix, target] of VITE_PROXY) {
-        const isHttps = httpsRE.test(target);
+        const isHttps = httpsRE.test(target)
         // https://github.com/http-party/node-http-proxy#options
         proxy[prefix] = {
             target,
@@ -17,7 +17,7 @@ export function createViteServer(viteEnv: ViteEnv) {
             rewrite: path => path.replace(new RegExp(`^${prefix}`), ''),
             // https is require secure=false
             ...(isHttps ? { secure: false } : {}),
-        };
+        }
     }
     return {
         // 禁用或配置 HMR 连接 设置 server.hmr.overlay 为 false 可以禁用服务器错误遮罩层
@@ -41,5 +41,5 @@ export function createViteServer(viteEnv: ViteEnv) {
         warmup: {
             clientFiles: ['./index.html'],
         },
-    };
+    }
 }

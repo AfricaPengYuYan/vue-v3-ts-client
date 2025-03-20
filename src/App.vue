@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useGlobal } from '@pureadmin/utils';
-import en from 'element-plus/es/locale/lang/en';
-import zhCn from 'element-plus/es/locale/lang/zh-cn';
+import { useGlobal } from '@pureadmin/utils'
+import en from 'element-plus/es/locale/lang/en'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
-const { $storage } = useGlobal<GlobalPropertiesApi>();
+const { $storage } = useGlobal<GlobalPropertiesApi>()
 
 const currentLocale = computed(() => {
-    return $storage.locale?.locale === 'zh' ? zhCn : en;
-});
+    return $storage.locale?.locale === 'zh' ? zhCn : en
+})
 </script>
 
 <template>

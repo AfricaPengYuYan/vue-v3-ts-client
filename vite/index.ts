@@ -1,5 +1,5 @@
-import { createViteBuild } from './build';
-import { createVitePlugins } from './plugins';
-import { createViteServer } from './server';
+import { createViteBuild } from './build'
+import { createVitePlugins } from './plugins'
+import { createViteServer } from './server'
 
-export { createViteBuild, createVitePlugins, createViteServer };
+export { createViteBuild, createVitePlugins, createViteServer }

@@ -4,12 +4,11 @@
         "jsx": "preserve",
         "jsxFactory": "h",
         "jsxFragmentFactory": "Fragment",
-        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "lib": ["ESNext", "DOM", "DOM.Iterable"],
         "useDefineForClassFields": true,
         "experimentalDecorators": true,
         "baseUrl": ".",
         "module": "ESNext",
-        /* Bundler mode */
         "moduleResolution": "bundler",
         "paths": {
             "~/*": ["./"],
@@ -17,30 +16,27 @@
             "#/*": ["./types/*"]
         },
         "resolveJsonModule": true,
-        "types": ["node", "vite/client", "element-plus/global"],
+        "typeRoots": [
+            "./node_modules/@types",
+            "./types"
+        ],
+        "types": ["node", "vite/client", "element-plus/global", "./types/global"],
         "allowImportingTsExtensions": true,
-        // 解决打包报`vue-tsc --noEmit && vite build`的错,忽略所有的声明文件(*.d.ts)的类型检查
-        "skipLibCheck": true,
-        "allowJs": true,
-        "strict": true,
+        "allowJs": false,
+        "strict": false,
         "strictFunctionTypes": false,
-        "noFallthroughCasesInSwitch": true,
-        "noEmit": true,
-        "isolatedModules": true,
-        /* Linting */
+        "noImplicitThis": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "importHelpers": true,
+        "noEmit": true,
         "sourceMap": true,
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true
+        "isolatedModules": true,
+        // 解决打包报`vue-tsc --noEmit && vite build`的错,忽略所有的声明文件(*.d.ts)的类型检查
+        "skipLibCheck": true
     },
-    "references": [
-        {
-            "path": "./tsconfig.node.json"
-        }
-    ],
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite/**/*.ts", "types/*/*.d.ts", "vite.config.ts"],
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite/**/*.ts", "types/**/*.d.ts", "vite.config.ts"],
     "exclude": ["node_modules", "dist", "**/*.js"]
 }

@@ -1,4 +1,4 @@
-import store from '@/store';
+import store from '@/store'
 
 export const useUserInfoStore = defineStore('userInfo', {
     state: () => ({
@@ -22,8 +22,8 @@ export const useUserInfoStore = defineStore('userInfo', {
         async handRefreshToken(data) {},
         async logout() {},
     },
-});
+})
 
 export function useUserInfoStoreHook() {
-    return useUserInfoStore(store);
+    return useUserInfoStore(store)
 }

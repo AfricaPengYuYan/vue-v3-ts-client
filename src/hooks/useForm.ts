@@ -1,8 +1,8 @@
-import type { FormInstance, FormRules } from 'element-plus';
-import { ref } from 'vue';
+import type { FormInstance, FormRules } from 'element-plus'
+import { ref } from 'vue'
 
 interface FormConfigType {
-    rules?: FormRules;
+    rules?: FormRules
 }
 
 /**
@@ -13,14 +13,14 @@ interface FormConfigType {
 export function useForm<T extends Record<string, any>>(initForm: T | (() => T), config?: FormConfigType) {
     const _init = (): T => {
         if (typeof initForm === 'function') {
-            return initForm();
+            return initForm()
         }
-        return initForm;
-    };
+        return initForm
+    }
 
-    const formModel = ref<T>(_init());
-    const formRef = ref<FormInstance>();
-    const rules = ref(config?.rules ?? {});
+    const formModel = ref<T>(_init())
+    const formRef = ref<FormInstance>()
+    const rules = ref(config?.rules ?? {})
 
     /**
      * 表单提交
@@ -28,21 +28,21 @@ export function useForm<T extends Record<string, any>>(initForm: T | (() => T), 
      */
     const submit = async (callback: () => any) => {
         if (!formRef.value)
-            return;
+            return
         await formRef.value.validate((valid) => {
             if (valid) {
-                callback();
+                callback()
             }
-        });
-    };
+        })
+    }
 
     /**
      * 重置表单设置
      */
     const reset = () => {
-        formModel.value = _init();
-        formRef.value?.resetFields();
-    };
+        formModel.value = _init()
+        formRef.value?.resetFields()
+    }
 
     return {
         formModel,
@@ -50,5 +50,5 @@ export function useForm<T extends Record<string, any>>(initForm: T | (() => T), 
         rules,
         submit,
         reset,
-    };
+    }
 }

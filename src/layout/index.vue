@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CustomFooter, CustomHeader, CustomNav, CustomSide } from './components';
+import { CustomFooter, CustomHeader, CustomNav, CustomSide } from './components'
 </script>
 
 <template>

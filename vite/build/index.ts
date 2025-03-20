@@ -1,4 +1,4 @@
-import { pathResolve } from '../utils';
+import { pathResolve } from '../utils'
 
 // https://vitejs.cn/config/#build-target
 export function createViteBuild() {
@@ -70,7 +70,7 @@ export function createViteBuild() {
                 assetFileNames: `static/[ext]/[name]-[hash].[ext]`,
                 manualChunks(id: any) {
                     if (id.includes('node_modules')) {
-                        return id.toString().split('node_modules/')[1].split('/')[0].toString();
+                        return id.toString().split('node_modules/')[1].split('/')[0].toString()
                     }
                 },
             },
@@ -89,5 +89,5 @@ export function createViteBuild() {
          * chunk 大小警告的限制（以 kbs 为单位）。
          */
         chunkSizeWarningLimit: 2000,
-    };
+    }
 }

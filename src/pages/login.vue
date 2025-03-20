@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { useForm } from '@/hooks/useForm.ts';
-import { useRouter } from 'vue-router';
+import { useForm } from '@/hooks/useForm.ts'
+import { useRouter } from 'vue-router'
 
-const $router = useRouter();
+const $router = useRouter()
 
 interface LoginForm {
-    account: string;
-    password: string;
+    account: string
+    password: string
 }
 
 const { formModel, formRef, submit } = useForm<LoginForm>({
     account: '',
     password: '',
-});
+})
 
 function handleSubmit() {
     submit(() => {
-        $router.push('/');
-    });
+        $router.push('/')
+    })
 }
 </script>
 

@@ -1,12 +1,11 @@
-import type { AppRouteRecordRaw } from '#/router';
-import type { Router, RouteRecordRaw } from 'vue-router';
-import { setupPermissions } from '@/permissions';
-import { getHistoryMode } from '@/utils';
-import { createRouter } from 'vue-router';
+import type { Router, RouteRecordRaw } from 'vue-router'
+import { setupPermissions } from '@/permissions'
+import { getHistoryMode } from '@/utils'
+import { createRouter } from 'vue-router'
 
-const Layout = () => import('@/layout/index.vue');
+const Layout = () => import('@/layout/index.vue')
 
-export const constantRoutes: AppRouteRecordRaw[] = [
+export const constantRoutes: RouteConfigsTable[] = [
     {
         path: '/',
         name: 'Home',
@@ -34,11 +33,9 @@ export const constantRoutes: AppRouteRecordRaw[] = [
         component: () => import('@/pages/error/404'),
         meta: {
             title: '404',
-            breadcrumbHidden: true,
-            hidden: true,
         },
     },
-];
+]
 
 const router: Router = createRouter({
     history: getHistoryMode(),
@@ -48,22 +45,22 @@ const router: Router = createRouter({
     scrollBehavior(to, from, savedPosition) {
         return new Promise((resolve) => {
             if (savedPosition) {
-                return savedPosition;
+                return savedPosition
             }
             else {
                 if (from.meta.saveSrollTop) {
-                    const top: number = document.documentElement.scrollTop || document.body.scrollTop;
-                    resolve({ left: 0, top });
+                    const top: number = document.documentElement.scrollTop || document.body.scrollTop
+                    resolve({ left: 0, top })
                 }
             }
-        });
+        })
     },
-});
+})
 
 export function setupRouter(app: any) {
-    setupPermissions(router);
-    app.use(router);
-    return router;
+    setupPermissions(router)
+    app.use(router)
+    return router
 }
 
-export default router;
+export default router
