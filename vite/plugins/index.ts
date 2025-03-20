@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -11,7 +12,7 @@ import { configAutoImportPlugin, configVueComponentsPlugin, configVueIconsPlugin
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     const { VITE_USE_IMAGEMIN, VITE_USE_COMPRESS, VITE_COMPRESS_DELETE_ORIGIN_FILE, VITE_LEGACY, VITE_COMPRESSION } = viteEnv
 
-    const plugins = [vue(), vueJsx(), vueSetupExtend()]
+    const plugins = [vue(), vueJsx(), vueSetupExtend(), tailwindcss()]
 
     if (VITE_LEGACY) {
         const setupLegacy = () => {

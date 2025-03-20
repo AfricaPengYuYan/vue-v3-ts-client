@@ -9,7 +9,7 @@ interface ViteEnv {
     readonly VITE_USE_COMPRESS: boolean
     readonly VITE_COMPRESS_DELETE_ORIGIN_FILE: boolean
     readonly VITE_LEGACY: boolean
-    readonly VITE_COMPRESSION: string
+    readonly VITE_COMPRESSION: ViteCompression
     readonly VITE_CDN: boolean
     readonly VITE_HIDE_HOME: boolean
 }
