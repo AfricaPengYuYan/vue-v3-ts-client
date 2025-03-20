@@ -1,27 +1,27 @@
-import {ProxyOptions} from 'vite'
+import type { ProxyOptions } from 'vite';
 
-type ProxyTargetList = Record<string, ProxyOptions>
+type ProxyTargetList = Record<string, ProxyOptions>;
 
-const httpsRE = /^https:\/\//
+const httpsRE = /^https:\/\//;
 
 export function createViteServer(viteEnv: ViteEnv) {
-    const {VITE_PORT, VITE_PROXY} = viteEnv
-    const proxy: ProxyTargetList = {}
+    const { VITE_PORT, VITE_PROXY } = viteEnv;
+    const proxy: ProxyTargetList = {};
     for (const [prefix, target] of VITE_PROXY) {
-        const isHttps = httpsRE.test(target)
+        const isHttps = httpsRE.test(target);
         // https://github.com/http-party/node-http-proxy#options
         proxy[prefix] = {
-            target: target,
+            target,
             changeOrigin: true,
             ws: true,
-            rewrite: (path) => path.replace(new RegExp(`^${prefix}`), ''),
+            rewrite: path => path.replace(new RegExp(`^${prefix}`), ''),
             // https is require secure=false
-            ...(isHttps ? {secure: false} : {}),
-        }
+            ...(isHttps ? { secure: false } : {}),
+        };
     }
     return {
         // 禁用或配置 HMR 连接 设置 server.hmr.overlay 为 false 可以禁用服务器错误遮罩层
-        hmr: {overlay: false},
+        hmr: { overlay: false },
         // 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
         cors: true,
         // 服务启动时是否自动打开浏览器
@@ -37,5 +37,9 @@ export function createViteServer(viteEnv: ViteEnv) {
         host: '0.0.0.0',
         // 本地跨域代理
         proxy,
-    }
+        // 预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布
+        warmup: {
+            clientFiles: ['./index.html'],
+        },
+    };
 }

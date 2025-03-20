@@ -1,3 +1,5 @@
+import { pathResolve } from '../utils';
+
 // https://vitejs.cn/config/#build-target
 export function createViteBuild() {
     return {
@@ -56,6 +58,9 @@ export function createViteBuild() {
          * 自定义底层的 Rollup 打包配置。这与从 Rollup 配置文件导出的选项相同，并将与 Vite 的内部 Rollup 选项合并。
          */
         rollupOptions: {
+            input: {
+                index: pathResolve('./index.html', import.meta.url),
+            },
             // 确保外部化处理那些你不想打包进库的依赖
             external: [],
             // 指定文件输出的配置
@@ -84,5 +89,5 @@ export function createViteBuild() {
          * chunk 大小警告的限制（以 kbs 为单位）。
          */
         chunkSizeWarningLimit: 2000,
-    }
+    };
 }

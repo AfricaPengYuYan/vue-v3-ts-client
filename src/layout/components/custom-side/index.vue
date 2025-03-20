@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import Logo from './logo.vue'
+import Logo from './logo.vue';
 </script>
 
 <template>
-  <aside class="aside-container h-dvh">
-    <Logo></Logo>
-  </aside>
+    <aside class="aside-container h-dvh">
+        <Logo />
+    </aside>
 </template>
 
 <style scoped lang="scss">
 .aside-container {
-  width: 220px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  transition: width .3s;
-  z-index: 1001;
-  background-color: #fff;
-  border-right: 1px solid #0505050f;
+    width: 220px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: width 0.3s;
+    z-index: 1001;
+    background-color: #fff;
+    border-right: 1px solid #0505050f;
 }
 </style>

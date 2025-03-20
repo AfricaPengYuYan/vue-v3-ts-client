@@ -1,72 +1,46 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "baseUrl": ".",
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "types": [
-      "node",
-      "vite/client",
-      "element-plus/global"
-    ],
-    "paths": {
-      "~/*": [
-        "./"
-      ],
-      "@/*": [
-        "./src/*"
-      ],
-      "#/*": [
-        "./types/*"
-      ]
+    "compilerOptions": {
+        "target": "ESNext",
+        "jsx": "preserve",
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Fragment",
+        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "useDefineForClassFields": true,
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "module": "ESNext",
+        /* Bundler mode */
+        "moduleResolution": "bundler",
+        "paths": {
+            "~/*": ["./"],
+            "@/*": ["./src/*"],
+            "#/*": ["./types/*"]
+        },
+        "resolveJsonModule": true,
+        "types": ["node", "vite/client", "element-plus/global"],
+        "allowImportingTsExtensions": true,
+        // 解决打包报`vue-tsc --noEmit && vite build`的错,忽略所有的声明文件(*.d.ts)的类型检查
+        "skipLibCheck": true,
+        "allowJs": true,
+        "strict": true,
+        "strictFunctionTypes": false,
+        "noFallthroughCasesInSwitch": true,
+        "noEmit": true,
+        "isolatedModules": true,
+        /* Linting */
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "importHelpers": true,
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true
     },
-    // 解决打包报`vue-tsc --noEmit && vite build`的错,忽略所有的声明文件(*.d.ts)的类型检查
-    "skipLibCheck": true,
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment",
-    /* Linting */
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "importHelpers": true,
-    "experimentalDecorators": true,
-    "strictFunctionTypes": false
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "vite/**/*.ts",
-    "types/*/*.d.ts",
-    "vite.config.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.js"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+    "references": [
+        {
+            "path": "./tsconfig.node.json"
+        }
+    ],
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite/**/*.ts", "types/*/*.d.ts", "vite.config.ts"],
+    "exclude": ["node_modules", "dist", "**/*.js"]
 }

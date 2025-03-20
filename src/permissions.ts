@@ -1,11 +1,11 @@
-import NProgress from '@/utils/progress'
-import {Router} from 'vue-router'
+import type { Router } from 'vue-router';
+import NProgress from '@/utils/progress';
 
-const routesWhiteList = ['/login']
+const routesWhiteList = ['/login'];
 
 export function setupPermissions(router: Router) {
     router.beforeEach(async (to, from, next) => {
-        NProgress.start()
+        NProgress.start();
 
         // 暂时设置为未登录
         // const hasToken = false
@@ -23,10 +23,11 @@ export function setupPermissions(router: Router) {
         //     }
         // }
 
-        next()
-    })
+        next();
+    });
 
     router.afterEach(async (to: any) => {
-        if (NProgress.status) NProgress.done()
-    })
+        if (NProgress.status)
+            NProgress.done();
+    });
 }

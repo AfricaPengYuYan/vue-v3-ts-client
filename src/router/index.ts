@@ -1,23 +1,24 @@
-import {createRouter, Router, RouteRecordRaw} from 'vue-router'
-import {getHistoryMode} from "@/utils";
-import {setupPermissions} from "@/permissions";
-import {AppRouteRecordRaw} from "#/router";
+import type { AppRouteRecordRaw } from '#/router';
+import type { Router, RouteRecordRaw } from 'vue-router';
+import { setupPermissions } from '@/permissions';
+import { getHistoryMode } from '@/utils';
+import { createRouter } from 'vue-router';
 
-const Layout = () => import("@/layout/index.vue");
+const Layout = () => import('@/layout/index.vue');
 
 export const constantRoutes: AppRouteRecordRaw[] = [
     {
         path: '/',
-        name: "Home",
-        redirect: "/welcome",
+        name: 'Home',
+        redirect: '/welcome',
         component: Layout,
         children: [
             {
                 path: '/welcome',
                 name: 'Index',
                 component: () => import('@/pages/index'),
-            }
-        ]
+            },
+        ],
     },
     {
         path: '/login',
@@ -32,12 +33,12 @@ export const constantRoutes: AppRouteRecordRaw[] = [
         name: 'PageNotFound',
         component: () => import('@/pages/error/404'),
         meta: {
-            title: "404",
+            title: '404',
             breadcrumbHidden: true,
             hidden: true,
         },
-    }
-]
+    },
+];
 
 const router: Router = createRouter({
     history: getHistoryMode(),
@@ -47,21 +48,22 @@ const router: Router = createRouter({
     scrollBehavior(to, from, savedPosition) {
         return new Promise((resolve) => {
             if (savedPosition) {
-                return savedPosition
-            } else {
+                return savedPosition;
+            }
+            else {
                 if (from.meta.saveSrollTop) {
-                    const top: number = document.documentElement.scrollTop || document.body.scrollTop
-                    resolve({left: 0, top})
+                    const top: number = document.documentElement.scrollTop || document.body.scrollTop;
+                    resolve({ left: 0, top });
                 }
             }
-        })
+        });
     },
-})
+});
 
-export const setupRouter = (app: any) => {
-    setupPermissions(router)
-    app.use(router)
-    return router
+export function setupRouter(app: any) {
+    setupPermissions(router);
+    app.use(router);
+    return router;
 }
 
-export default router
+export default router;

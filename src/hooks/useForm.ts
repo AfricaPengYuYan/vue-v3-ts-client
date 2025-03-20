@@ -1,61 +1,54 @@
-type FormConfigType = {
-    rules: any
+import type { FormInstance, FormRules } from 'element-plus';
+import { ref } from 'vue';
+
+interface FormConfigType {
+    rules?: FormRules;
 }
 
 /**
- * 表单
+ * 表单Hook
  * @param initForm 初始化表单数据
  * @param config 表单配置 { rules:{} }
  */
-export function useForm(initForm, config?: FormConfigType) {
-    const _init = () => {
-        if (["[object Object]", "object Array"].includes(Object.prototype.toString.call(initForm))) {
-            return initForm
-        } else if (Object.prototype.toString.call(initForm) === "[object Function]") {
-            return initForm()
-        } else {
-            throw new Error('initForm must be an object or a function that returns an object.');
+export function useForm<T extends Record<string, any>>(initForm: T | (() => T), config?: FormConfigType) {
+    const _init = (): T => {
+        if (typeof initForm === 'function') {
+            return initForm();
         }
-    }
+        return initForm;
+    };
 
-    const formModel = ref(_init())
-    const formRef = ref()
-
-    const _initRules = () => {
-        if (config?.rules) {
-            return config.rules
-        } else {
-            return {}
-        }
-    }
-    const rules = ref(_initRules())
+    const formModel = ref<T>(_init());
+    const formRef = ref<FormInstance>();
+    const rules = ref(config?.rules ?? {});
 
     /**
      * 表单提交
      * @param callback 回调函数
      */
     const submit = async (callback: () => any) => {
-        await formRef.value?.validate((valid) => {
+        if (!formRef.value)
+            return;
+        await formRef.value.validate((valid) => {
             if (valid) {
-                callback()
+                callback();
             }
-        })
-    }
+        });
+    };
 
     /**
      * 重置表单设置
      */
     const reset = () => {
         formModel.value = _init();
-        formRef.value?.resetFields()
-    }
+        formRef.value?.resetFields();
+    };
 
     return {
         formModel,
         formRef,
         rules,
-
         submit,
-        reset
-    }
+        reset,
+    };
 }

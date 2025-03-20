@@ -1,9 +1,9 @@
-import {getToken} from "@/utils/auth.ts";
-import {loginApi} from "@/api";
+import { loginApi } from '@/api';
+import { getToken } from '@/utils/auth.ts';
 
 export const useAppStore = defineStore('app', {
     state: () => ({
-        token: getToken()
+        token: getToken(),
     }),
     getters: {},
     actions: {
@@ -11,9 +11,8 @@ export const useAppStore = defineStore('app', {
             return new Promise((resolve, reject) => {
                 loginApi().then(() => {
 
-                })
-            })
-        }
+                });
+            });
+        },
     },
-})
-
+});

@@ -1,4 +1,5 @@
-import viteImagemin from 'vite-plugin-imagemin'
+import viteImagemin from 'vite-plugin-imagemin';
+
 export function configImageminPlugin() {
     const plugin = viteImagemin({
         gifsicle: {
@@ -26,6 +27,6 @@ export function configImageminPlugin() {
                 },
             ],
         },
-    })
-    return plugin
+    });
+    return plugin;
 }

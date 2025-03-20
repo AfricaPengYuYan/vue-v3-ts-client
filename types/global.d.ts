@@ -2,7 +2,7 @@ declare global {
     /**
      * 打包压缩格式的类型声明
      */
-    type ViteCompression = | 'none' | 'gzip' | 'brotli' | 'both' | 'gzip-clear' | 'brotli-clear' | 'both-clear'
+    type ViteCompression = | 'none' | 'gzip' | 'brotli' | 'both' | 'gzip-clear' | 'brotli-clear' | 'both-clear';
 
     /**
      * 对应 `public/serverConfig.json` 文件的类型声明
@@ -37,56 +37,56 @@ declare global {
      *
      */
     interface ServerConfig {
-        Version: string
-        Title: string
-        FixedHeader: boolean
-        HiddenSideBar: boolean
-        MultiTagsCache: boolean
-        KeepAlive: boolean
-        Locale: string
-        Layout: string
-        Theme: string
-        DarkMode: boolean
-        OverallStyle: string
-        Grey: boolean
-        Weak: boolean
-        HideTabs: boolean
-        HideFooter: boolean
-        SidebarStatus: boolean
-        EpThemeColor: string
-        ShowLogo: boolean
-        ShowModel: string
-        MenuArrowIconNoTransition: boolean
-        CachingAsyncRoutes: boolean
-        TooltipEffect: string
-        ResponsiveStorageNameSpace: string
-        MenuSearchHistory: number
+        Version: string;
+        Title: string;
+        FixedHeader: boolean;
+        HiddenSideBar: boolean;
+        MultiTagsCache: boolean;
+        KeepAlive: boolean;
+        Locale: string;
+        Layout: string;
+        Theme: string;
+        DarkMode: boolean;
+        OverallStyle: string;
+        Grey: boolean;
+        Weak: boolean;
+        HideTabs: boolean;
+        HideFooter: boolean;
+        SidebarStatus: boolean;
+        EpThemeColor: string;
+        ShowLogo: boolean;
+        ShowModel: string;
+        MenuArrowIconNoTransition: boolean;
+        CachingAsyncRoutes: boolean;
+        TooltipEffect: string;
+        ResponsiveStorageNameSpace: string;
+        MenuSearchHistory: number;
     }
 
     interface ResponsiveStorage {
         locale: {
-            locale: string
-        }
+            locale: string;
+        };
         layout: {
-            layout: string
-            theme: string
-            darkMode: boolean
-            sidebarStatus: boolean
-            epThemeColor: string
-        }
+            layout: string;
+            theme: string;
+            darkMode: boolean;
+            sidebarStatus: boolean;
+            epThemeColor: string;
+        };
         configure: {
-            grey: boolean
-            weak: boolean
-            hideTabs: boolean
-            showLogo: boolean
-            showModel: string
-            multiTagsCache: boolean
-        }
+            grey: boolean;
+            weak: boolean;
+            hideTabs: boolean;
+            showLogo: boolean;
+            showModel: string;
+            multiTagsCache: boolean;
+        };
     }
 
     interface GlobalPropertiesApi {
-        $echarts: ECharts
-        $storage: ResponsiveStorage
-        $config: ServerConfig
+        $echarts: ECharts;
+        $storage: ResponsiveStorage;
+        $config: ServerConfig;
     }
 }
