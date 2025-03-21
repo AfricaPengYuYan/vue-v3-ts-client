@@ -47,7 +47,7 @@ export async function getServerConfig(app: App): Promise<undefined> {
             return $config
         })
         .catch(() => {
-            throw '请在public文件夹下添加server-config.json配置文件'
+            throw new Error('请在public文件夹下添加server-config.json配置文件')
         })
 }
 

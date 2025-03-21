@@ -44,4 +44,5 @@ export default antfu({
 
     // 忽略文件
     ignores: ['dist', 'node_modules', '*.min.*', 'public'],
+
 })

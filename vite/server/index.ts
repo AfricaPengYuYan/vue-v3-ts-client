@@ -25,7 +25,7 @@ export function createViteServer(viteEnv: ViteEnv) {
         // 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
         cors: true,
         // 服务启动时是否自动打开浏览器
-        open: true,
+        open: false,
         // 类型： number 指定服务器端口
         port: VITE_PORT,
         headers: {

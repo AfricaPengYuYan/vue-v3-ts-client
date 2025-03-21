@@ -1,7 +1,6 @@
 import type { ConfigEnv, UserConfig } from 'vite'
+
 import { resolve } from 'node:path'
-import autoprefixer from 'autoprefixer'
-import postCssPxToRem from 'postcss-pxtorem'
 import { defineConfig, loadEnv } from 'vite'
 import { createViteBuild, createVitePlugins, createViteServer } from './vite'
 import { wrapperEnv } from './vite/utils'
