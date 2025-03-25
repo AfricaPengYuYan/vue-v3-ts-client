@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { useGlobal } from '@pureadmin/utils'
+import { responsiveStorageNameSpace } from '@/config'
+import { useLocalStorage } from '@vueuse/core'
 import en from 'element-plus/es/locale/lang/en'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
-const { $storage } = useGlobal<GlobalPropertiesApi>()
+const storage = useLocalStorage(`${responsiveStorageNameSpace()}locale`, {
+    locale: 'zh',
+})
 
 const currentLocale = computed(() => {
-    return $storage.locale?.locale === 'zh' ? zhCn : en
+    return storage.value.locale === 'zh' ? zhCn : en
 })
 </script>
 

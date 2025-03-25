@@ -33,6 +33,16 @@
         // 解决打包报`vue-tsc --noEmit && vite build`的错,忽略所有的声明文件(*.d.ts)的类型检查
         "skipLibCheck": true
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite/**/*.ts", "types/**/*.d.ts", "vite.config.ts"],
-    "exclude": ["node_modules", "dist", "**/*.js"]
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "types/**/*.d.ts",
+        "vite/**/*.ts",
+        "vite/**/*.d.ts",
+        "vite.config.ts"
+
+    ],
+    "exclude": ["node_modules", "dist", "**/*.js", ".eslintrc-auto-import.json"]
 }

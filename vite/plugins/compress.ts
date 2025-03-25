@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite'
-import { isArray } from '@pureadmin/utils'
 import compressPlugin from 'vite-plugin-compression'
+import { isArray } from '../../src/utils/helper'
 
 export function configCompressPlugin(deleteOriginFile = false, compress: ViteCompression) {
     if (compress === 'none')

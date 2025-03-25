@@ -1,7 +1,8 @@
 import type { App, WritableComputedRef } from 'vue'
 import type { I18n } from 'vue-i18n'
 import { responsiveStorageNameSpace } from '@/config'
-import { isObject, storageLocal } from '@pureadmin/utils'
+import { isObject } from '@/utils/helper'
+import { useLocalStorage } from '@vueuse/core'
 
 // element-plus国际化
 import enLocale from 'element-plus/es/locale/lang/en'
@@ -65,10 +66,15 @@ export const localesConfigs = {
     },
 }
 
+// 修改 storageLocal 为 useLocalStorage
+const storage = useLocalStorage(`${responsiveStorageNameSpace()}locale`, {
+    locale: 'zh',
+})
+
 // 将 i18n 实例创建移到这里
 export const i18n: I18n = createI18n({
     legacy: false,
-    locale: storageLocal().getItem<StorageConfigs>(`${responsiveStorageNameSpace()}locale`)?.locale ?? 'zh',
+    locale: storage.value.locale ?? 'zh',
     fallbackLocale: 'en',
     messages: localesConfigs,
 })
