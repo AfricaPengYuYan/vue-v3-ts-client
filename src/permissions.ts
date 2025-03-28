@@ -8,22 +8,23 @@ export function setupPermissions(router: Router) {
         NProgress.start()
 
         // 暂时设置为未登录
-        // const hasToken = false
-        // if (hasToken) {
-        //
-        // } else {
-        //     if (to.path !== '/login') {
-        //         if (routesWhiteList.includes(to.path)) {
-        //             next()
-        //         } else {
-        //             next({path: '/login', replace: true})
-        //         }
-        //     } else {
-        //         next()
-        //     }
-        // }
+        const hasToken = false
+        if (hasToken) {
 
-        next()
+        }
+        else {
+            if (to.path !== '/login') {
+                if (routesWhiteList.includes(to.path)) {
+                    next()
+                }
+                else {
+                    next({ path: '/login', replace: true })
+                }
+            }
+            else {
+                next()
+            }
+        }
     })
 
     router.afterEach(async (to: any) => {

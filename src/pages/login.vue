@@ -7,11 +7,13 @@ const $router = useRouter()
 interface LoginForm {
     account: string
     password: string
+    checked: boolean
 }
 
 const { formModel, formRef, submit } = useForm<LoginForm>({
     account: '',
     password: '',
+    checked: false,
 })
 
 function handleSubmit() {
@@ -23,12 +25,6 @@ function handleSubmit() {
 
 <template>
     <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img class="mx-auto h-10 w-auto" src="@/assets/images/mark.svg" alt="">
-            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                登录您的账户
-            </h2>
-        </div>
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <el-form ref="formRef" label-position="top" :model="formModel">
                 <el-form-item label="账户">
@@ -38,9 +34,14 @@ function handleSubmit() {
                     <el-input v-model="formModel.password" />
                 </el-form-item>
                 <el-form-item>
-                    <el-button class="w-full" type="primary" @click="handleSubmit">
+                    <el-checkbox v-model="formModel.checked">
+                        记住我
+                    </el-checkbox>
+                </el-form-item>
+                <el-form-item>
+                    <v-button class="w-full" type="primary" :click="handleSubmit">
                         登 录
-                    </el-button>
+                    </v-button>
                 </el-form-item>
             </el-form>
         </div>
