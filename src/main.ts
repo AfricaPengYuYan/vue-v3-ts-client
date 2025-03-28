@@ -24,13 +24,9 @@
  *            佛祖保佑       永不宕机     永无BUG
  *
  */
-
-import { getServerConfig } from '@/config'
-
 import { setupRouter } from '@/router'
 
 import { setupStore } from '@/store'
-import { injectResponsiveStorage } from '@/utils/responsive.ts'
 
 import { createApp } from 'vue'
 
@@ -44,11 +40,9 @@ import '@/assets/styles/tailwind.css'
 import '@/assets/styles/reset.scss'
 
 const app = createApp(App)
-getServerConfig(app).then(async (config) => {
-    setupStore(app)
-    await setupRouter(app).isReady()
-    injectResponsiveStorage(app, config)
-    app
-        .use(useI18n)
-        .mount('#app')
-})
+
+setupStore(app)
+setupRouter(app).isReady()
+app
+    .use(useI18n)
+    .mount('#app')

@@ -1,6 +1,6 @@
 import type { Router, RouteRecordRaw } from 'vue-router'
 import { setupPermissions } from '@/permissions'
-import { getHistoryMode } from '@/utils'
+import { getHistoryMode } from '@/router/utils'
 import { createRouter } from 'vue-router'
 
 const Layout = () => import('@/layout/index.vue')
@@ -38,7 +38,7 @@ export const constantRoutes: RouteConfigsTable[] = [
 ]
 
 const router: Router = createRouter({
-    history: getHistoryMode(),
+    history: getHistoryMode(import.meta.env.VITE_ROUTER_HISTORY),
     routes: constantRoutes as RouteRecordRaw[],
     // 是否应该禁止尾部斜杠。默认为false
     strict: true,

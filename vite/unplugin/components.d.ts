@@ -8,7 +8,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    BeLazy: typeof import('./../../src/components/BeLazy/index.vue')['default']
     Column: typeof import('./../../src/components/v-table/column.vue')['default']
+    ConfigGlobal: typeof import('./../../src/components/ConfigGlobal/index.vue')['default']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     RouterLink: typeof import('vue-router')['RouterLink']
