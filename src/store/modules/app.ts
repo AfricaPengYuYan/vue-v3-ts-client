@@ -1,5 +1,8 @@
 import type { ComponentSize } from 'element-plus'
 import store from '@/store'
+import { setCssVar } from '@/utils'
+import { mix } from '@/utils/color'
+import { useDark } from '@vueuse/core'
 import { defineStore } from 'pinia'
 
 interface AppState {
@@ -93,10 +96,39 @@ export const useAppStore = defineStore('app', {
         getCurrentSize(): ComponentSize {
             return this.currentSize
         },
+        getTitle(): string {
+            return this.title
+        },
+        getIsDark(): boolean {
+            return this.isDark
+        },
     },
     actions: {
+        setPrimaryLight() {
+            if (this.theme.elColorPrimary) {
+                const elColorPrimary = this.theme.elColorPrimary
+                const color = this.isDark ? '#000000' : '#ffffff'
+                const lightList = [3, 5, 7, 8, 9]
+                lightList.forEach((v) => {
+                    setCssVar(`--el-color-primary-light-${v}`, mix(color, elColorPrimary, v / 10))
+                })
+                setCssVar(`--el-color-primary-dark-2`, mix(color, elColorPrimary, 0.2))
+            }
+        },
         setCurrentSize(currentSize: ComponentSize) {
             this.currentSize = currentSize
+        },
+        setTitle(title: string) {
+            this.title = title
+        },
+        initTheme() {
+            const isDark = useDark({
+                valueDark: 'dark',
+                valueLight: 'light',
+            })
+            isDark.value = this.getIsDark
+            const newTitle = import.meta.env.VITE_APP_TITLE
+            newTitle !== this.getTitle && this.setTitle(newTitle)
         },
     },
     persist: true,

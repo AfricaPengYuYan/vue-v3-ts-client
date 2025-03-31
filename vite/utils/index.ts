@@ -5,18 +5,19 @@ import { fileURLToPath } from 'node:url'
 function wrapperEnv(envConf: Recordable): ViteEnv {
     /** 此处为默认值 */
     const env: ViteEnv = {
-        VITE_HIDE_HOME: false,
-        VITE_PUBLIC_PATH: '',
-        VITE_ROUTER_HISTORY: '',
-        VITE_PORT: 8848,
-        VITE_PROXY: [],
-        VITE_DROP_CONSOLE: false,
-        VITE_USE_IMAGEMIN: false,
-        VITE_USE_COMPRESS: false,
-        VITE_COMPRESS_DELETE_ORIGIN_FILE: false,
-        VITE_LEGACY: false,
-        VITE_COMPRESSION: 'none',
-        VITE_CDN: false,
+        VITE_APP_TITLE: '', // 项目标题
+        VITE_PORT: 8808, // 开发服务器端口号
+        VITE_PUBLIC_PATH: '', // 部署时的公共基础路径
+        VITE_HIDE_HOME: false, // 是否隐藏首页
+        VITE_ROUTER_HISTORY: '', // 路由模式（hash/history）
+        VITE_PROXY: [], // 开发环境代理配置
+        VITE_DROP_CONSOLE: false, // 生产环境是否删除 console
+        VITE_USE_IMAGEMIN: false, // 是否使用图片压缩
+        VITE_USE_COMPRESS: false, // 是否使用 gzip 或 brotli 压缩
+        VITE_COMPRESS_DELETE_ORIGIN_FILE: false, // 压缩后是否删除原文件
+        VITE_COMPRESSION: 'none', // 压缩类型（gzip/brotli/none）
+        VITE_LEGACY: false, // 是否为旧版浏览器提供兼容性支持
+        VITE_CDN: false, // 是否使用 CDN 加速
     }
     for (const envName of Object.keys(envConf)) {
         let realName = envConf[envName].replace(/\\n/g, '\n')

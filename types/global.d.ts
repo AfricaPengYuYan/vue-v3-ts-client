@@ -25,6 +25,8 @@ declare global {
      * @description 定义项目环境变量的类型
      */
     interface ViteEnv {
+        /** 标题 */
+        readonly VITE_APP_TITLE: string
         /** 公共基础路径 */
         readonly VITE_PUBLIC_PATH: string
         /** 路由历史模式 */

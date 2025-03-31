@@ -3,6 +3,7 @@ import { useAppStore } from '@/store/modules/app'
 import { useLocaleStore } from '@/store/modules/locale'
 
 const appStore = useAppStore()
+appStore.initTheme()
 const localeStore = useLocaleStore()
 const currentSize = computed(() => appStore.getCurrentSize)
 const currentLocale = computed(() => localeStore.currentLocale)
