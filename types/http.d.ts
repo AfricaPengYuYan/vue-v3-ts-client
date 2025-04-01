@@ -1,47 +1,71 @@
 import type { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from 'axios'
 
-export type RequestMethods = Extract<Method, 'get' | 'post' | 'put' | 'delete' | 'patch' | 'option' | 'head'>
+declare global {
+    type RequestMethods = Extract<Method, 'get' | 'post' | 'put' | 'delete' | 'patch' | 'option' | 'head'>
 
-export interface PureHttpError extends AxiosError {
-    isCancelRequest?: boolean
-}
+    interface PureHttpError extends AxiosError {
+        isCancelRequest?: boolean
+    }
 
-export interface PureHttpResponse extends AxiosResponse {
-    config: PureHttpRequestConfig
-}
+    interface PureHttpResponse extends AxiosResponse {
+        config: PureHttpRequestConfig
+    }
 
-export interface PureHttpRequestConfig extends AxiosRequestConfig {
-    beforeRequestCallback?: (request: PureHttpRequestConfig) => void
-    beforeResponseCallback?: (response: PureHttpResponse) => void
-    retryTimes?: number // 重试次数
-    retryDelay?: number // 重试延迟
-    withToken?: boolean // 是否需要token
-}
+    interface PureHttpRequestConfig extends AxiosRequestConfig {
+        beforeRequestCallback?: (request: PureHttpRequestConfig) => void
+        beforeResponseCallback?: (response: PureHttpResponse) => void
+        retryTimes?: number
+        retryDelay?: number
+        withToken?: boolean
+    }
 
-export interface HttpResponse<T = any> {
-    code: number
-    message: string
-    data: T
-}
+    /** HTTP 响应数据接口 */
+    interface HttpResponse<T = any> {
+        /** 状态码 */
+        code: number
+        /** 响应信息 */
+        message: string
+        /** 响应数据 */
+        data: T
+    }
 
-export interface HttpError {
-    code: number
-    message: string
-}
+    /** HTTP 错误接口 */
+    interface HttpError {
+        /** 错误码 */
+        code: number
+        /** 错误信息 */
+        message: string
+    }
 
-export enum HttpStatusCode {
-    BadRequest = 400,
-    Unauthorized = 401,
-    Forbidden = 403,
-    NotFound = 404,
-    MethodNotAllowed = 405,
-    RequestTimeout = 408,
-    InternalServerError = 500,
-    NotImplemented = 501,
-    BadGateway = 502,
-    ServiceUnavailable = 503,
-    GatewayTimeout = 504,
-    HttpVersionNotSupported = 505,
+    /** HTTP 状态码枚举 */
+    enum HttpStatusCode {
+        /** 400 错误的请求 */
+        BadRequest = 400,
+        /** 401 未授权 */
+        Unauthorized = 401,
+        /** 403 禁止访问 */
+        Forbidden = 403,
+        /** 404 资源未找到 */
+        NotFound = 404,
+        /** 405 方法不允许 */
+        MethodNotAllowed = 405,
+        /** 408 请求超时 */
+        RequestTimeout = 408,
+        /** 500 服务器内部错误 */
+        InternalServerError = 500,
+        /** 501 未实现 */
+        NotImplemented = 501,
+        /** 502 网关错误 */
+        BadGateway = 502,
+        /** 503 服务不可用 */
+        ServiceUnavailable = 503,
+        /** 504 网关超时 */
+        GatewayTimeout = 504,
+        /** 505 HTTP版本不支持 */
+        HttpVersionNotSupported = 505,
+    }
+
+    const HTTP_ERROR_MESSAGES: Record<HttpStatusCode, string>
 }
 
 export const HTTP_ERROR_MESSAGES: Record<HttpStatusCode, string> = {
@@ -58,3 +82,5 @@ export const HTTP_ERROR_MESSAGES: Record<HttpStatusCode, string> = {
     [HttpStatusCode.GatewayTimeout]: '网络超时',
     [HttpStatusCode.HttpVersionNotSupported]: 'http版本不支持该请求',
 } as const
+
+export {}

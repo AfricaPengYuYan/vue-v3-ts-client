@@ -53,3 +53,5 @@ declare global {
         readonly VITE_HIDE_HOME: boolean
     }
 }
+
+export {}

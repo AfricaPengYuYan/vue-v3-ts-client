@@ -1,4 +1,3 @@
-import type { HttpError, HttpResponse, HttpStatusCode, PureHttpError, PureHttpRequestConfig, PureHttpResponse } from '#/http'
 import type { AxiosInstance, AxiosRequestConfig, CustomParamsSerializer } from 'axios'
 import { HTTP_ERROR_MESSAGES } from '#/http'
 import { useUserInfoStoreHook } from '@/store/modules/userInfo.ts'

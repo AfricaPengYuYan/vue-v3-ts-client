@@ -41,7 +41,7 @@
         "sass": "^1.86.0",
         "tailwindcss": "^4.0.14",
         "terser": "^5.39.0",
-        "typescript": "^5.8.2",
+        "typescript": "5.8.2",
         "unplugin-auto-import": "^19.1.1",
         "unplugin-icons": "^22.1.0",
         "unplugin-vue-components": "^28.4.1",

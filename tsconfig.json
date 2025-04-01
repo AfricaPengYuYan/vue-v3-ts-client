@@ -4,6 +4,7 @@
         "jsx": "preserve",
         "jsxFactory": "h",
         "jsxFragmentFactory": "Fragment",
+        "jsxImportSource": "vue",
         "lib": ["ESNext", "DOM", "DOM.Iterable"],
         "useDefineForClassFields": true,
         "experimentalDecorators": true,
@@ -42,7 +43,6 @@
         "vite/**/*.ts",
         "vite/**/*.d.ts",
         "vite.config.ts"
-
     ],
     "exclude": ["node_modules", "dist", "**/*.js", ".eslintrc-auto-import.json"]
 }

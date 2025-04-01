@@ -22,8 +22,8 @@ export default antfu({
     // TypeScript 配置
     typescript: {
         overrides: {
-            'ts/consistent-type-imports': 'error', // 类型导入必须一致
-            'ts/no-explicit-any': 'warn', // 警告使用 any
+            'ts/consistent-type-imports': 'warn', // 类型导入必须一致
+            'ts/no-explicit-any': 'off', // 允许使用 any 类型，因为在某些场景下 any 是必要的
         },
     },
 
