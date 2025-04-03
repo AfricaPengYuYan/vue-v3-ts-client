@@ -1,6 +1,7 @@
 import type { ConfigEnv, UserConfig } from 'vite'
-
 import { resolve } from 'node:path'
+import autoprefixer from 'autoprefixer'
+import tailwindcss from 'tailwindcss'
 import { defineConfig, loadEnv } from 'vite'
 import { createViteBuild, createVitePlugins, createViteServer } from './vite'
 import { wrapperEnv } from './vite/utils'
@@ -8,6 +9,7 @@ import { wrapperEnv } from './vite/utils'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     const isBuild = command === 'build'
+    // Vite 已经自动按顺序加载了 .env, .env.local, .env.[mode], .env.[mode].local
     const env = loadEnv(mode, process.cwd())
     const viteEnv = wrapperEnv(env)
     const { VITE_PUBLIC_PATH } = viteEnv
@@ -32,6 +34,14 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
                 target: 'es2020',
             },
             include: ['element-plus', 'element-plus/es', '@element-plus/icons-vue', 'vue', 'pinia', 'sass', 'vue-router', 'axios', 'qs', 'tailwindcss/plugin'],
+        },
+        css: {
+            postcss: {
+                plugins: [
+                    tailwindcss,
+                    autoprefixer,
+                ],
+            },
         },
     }
 })

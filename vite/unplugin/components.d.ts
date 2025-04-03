@@ -9,11 +9,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BeLazy: typeof import('./../../src/components/BeLazy/index.vue')['default']
-    Column: typeof import('./../../src/components/v-table/column.vue')['default']
     ConfigGlobal: typeof import('./../../src/components/ConfigGlobal/index.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
-    ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
@@ -22,7 +19,5 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     VButton: typeof import('./../../src/components/VButton/index.vue')['default']
-    VIcon: typeof import('./../../src/components/v-icon/index.vue')['default']
-    VTable: typeof import('./../../src/components/v-table/index.vue')['default']
   }
 }

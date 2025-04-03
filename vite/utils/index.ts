@@ -44,6 +44,7 @@ function wrapperEnv(envConf: Recordable): ViteEnv {
     }
     return env
 }
+
 // 跨域代理重写
 function regExps(value: string, reg: string): string {
     return value.replace(new RegExp(`^${reg}`, 'g'), '')
