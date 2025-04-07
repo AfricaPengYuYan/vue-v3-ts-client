@@ -1,48 +1,71 @@
 {
     "compilerOptions": {
-        "target": "ESNext",
-        "jsx": "preserve",
-        "jsxFactory": "h",
+        // ===== 编译输出配置 =====
+        "target": "ESNext",         // 编译目标的 ECMAScript 版本
+        "module": "ESNext",         // 生成的模块系统代码
+        "moduleResolution": "Node", // 模块解析策略，兼容 vite 和 webpack
+        "lib": [                    // 编译需要包含的 API
+            "ESNext",
+            "DOM",
+            "DOM.Iterable"
+        ],
+
+        // ===== Vue 相关配置 =====
+        "jsx": "preserve",           // 保留 JSX 以供后续转换
+        "jsxFactory": "h",          // JSX 工厂函数
         "jsxFragmentFactory": "Fragment",
-        "jsxImportSource": "vue",
-        "lib": ["ESNext", "DOM", "DOM.Iterable"],
-        "useDefineForClassFields": true,
-        "experimentalDecorators": true,
-        "baseUrl": ".",
-        "module": "ESNext",
-        "moduleResolution": "bundler",
-        "paths": {
+        "jsxImportSource": "vue",   // JSX 导入来源
+
+        // ===== 路径解析配置 =====
+        "baseUrl": ".",            // 非相对模块导入的基准目录
+        "paths": {                 // 路径映射，与 vite/webpack 配置对应
             "~/*": ["./"],
             "@/*": ["./src/*"],
             "#/*": ["./types/*"]
         },
-        "resolveJsonModule": true,
-        "types": ["node", "vite/client", "element-plus/global"],
-        "allowImportingTsExtensions": true,
-        "allowJs": false,
-        "strict": false,
-        "strictFunctionTypes": false,
-        "noImplicitThis": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "importHelpers": true,
-        "noEmit": true,
-        "sourceMap": true,
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "isolatedModules": true,
-        // 解决打包报`vue-tsc --noEmit && vite build`的错,忽略所有的声明文件(*.d.ts)的类型检查
-        "skipLibCheck": true
+        "types": [                 // 需要包含的类型声明文件
+            "node",
+            "vite/client",
+            "element-plus/global",
+            "webpack-env"
+        ],
+
+        // ===== 类型检查配置 =====
+        "strict": true,            // 启用所有严格类型检查选项
+        "noImplicitThis": true,    // 禁止 this 有隐含的 any 类型
+        "noUnusedLocals": true,    // 报告未使用的局部变量
+        "noUnusedParameters": true, // 报告未使用的参数
+
+        // ===== 实验性功能和装饰器 =====
+        "useDefineForClassFields": true,     // 使用 Object.defineProperty 定义类字段
+        "experimentalDecorators": true,      // 启用装饰器
+        
+        // ===== 模块和导入配置 =====
+        "resolveJsonModule": true,           // 允许导入 JSON 模块
+        "isolatedModules": true,            // 确保每个文件都可以安全地独立转译
+        "esModuleInterop": true,            // 启用 ES 模块互操作性
+        "allowSyntheticDefaultImports": true, // 允许从没有默认导出的模块中默认导入
+        "forceConsistentCasingInFileNames": true, // 强制文件名大小写一致
+
+        // ===== 构建相关配置 =====
+        "sourceMap": true,         // 生成源映射文件
+        "importHelpers": true,     // 从 tslib 导入辅助工具函数
+        "noEmit": true,           // 不输出文件
+        "skipLibCheck": true      // 跳过声明文件的类型检查
     },
-    "include": [
+    "include": [                  // 需要编译的文件
         "src/**/*.ts",
         "src/**/*.d.ts",
         "src/**/*.tsx",
         "src/**/*.vue",
-        "types/**/*.d.ts",
-        "vite/**/*.ts",
-        "vite/**/*.d.ts",
-        "vite.config.ts"
+        "types/**/*.d.ts"
     ],
-    "exclude": ["node_modules", "dist", "**/*.js", ".eslintrc-auto-import.json"]
+    "exclude": [                  // 排除的文件
+        "node_modules",
+        "dist",
+        "**/*.js",
+        ".eslintrc-auto-import.json",
+        "vite",
+        "webpack.config.cjs"
+    ]
 }

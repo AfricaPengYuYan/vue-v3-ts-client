@@ -1,12 +1,13 @@
 {
     "name": "vue-v3-ts-client",
     "version": "0.0.0",
+    "type": "module",
     "private": true,
     "scripts": {
         "dev": "vite",
         "build:dev:vite": "vite build --mode development",
         "build:prod:vite": "vue-tsc --noEmit && vite build --mode production",
-        "build:prod:webpack": "webpack --config webpack.config.js --mode production",
+        "build:prod:webpack": "webpack --config webpack.config.cjs --mode production",
         "preview": "vite preview",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix"
@@ -82,5 +83,8 @@
     },
     "resolutions": {
         "bin-wrapper": "npm:bin-wrapper-china"
+    },
+    "engines": {    
+        "node": ">=16.0.0"
     }
 }
