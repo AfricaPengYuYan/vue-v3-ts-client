@@ -1,14 +1,12 @@
-// electron 主程序
 import path, { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { app, BrowserWindow } from 'electron'
+import { autoUpdater } from 'electron-updater'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-
 const idDev = process.env.NODE_ENV === 'development'
 
-// 屏蔽安全警告
 function createWindow() {
     const WINDOW = new BrowserWindow({
         titleBarStyle: 'hidden',
@@ -28,9 +26,47 @@ function createWindow() {
         WINDOW.webContents.openDevTools()
     }
     else {
-        WINDOW.loadFile(join(__dirname, 'dist/index.html'))
+        WINDOW.loadFile(join(__dirname, './dist-web/index.html'))
     }
 }
+
+function checkForUpdates() {
+    autoUpdater.autoDownload = false
+    autoUpdater.checkForUpdates()
+
+    autoUpdater.on('update-available', (info) => {
+        dialog.showMessageBox({
+            type: 'info',
+            title: '更新可用',
+            message: `发现新版本 ${info.version}，是否立即更新？`,
+            buttons: ['是', '否'],
+        }).then((result) => {
+            if (result.response === 0) {
+                autoUpdater.downloadUpdate()
+            }
+        })
+    })
+
+    autoUpdater.on('update-downloaded', () => {
+        dialog.showMessageBox({
+            type: 'info',
+            title: '更新完成',
+            message: '更新下载完成，是否立即安装？',
+            buttons: ['立即安装', '稍后'],
+        }).then((result) => {
+            if (result.response === 0) {
+                autoUpdater.quitAndInstall()
+            }
+        })
+    })
+
+    autoUpdater.on('error', (error) => {
+        dialog.showErrorBox('更新错误', error == null ? '未知错误' : error.toString())
+    })
+}
+
+checkForUpdates()
+
 app.whenReady().then(() => {
     createWindow()
     app.on('activate', () => {
