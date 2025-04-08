@@ -19,7 +19,7 @@ export function createViteBuild() {
          * 默认: dist
          * 指定输出路径（相对于 项目根目录）
          */
-        outDir: 'dist',
+        outDir: 'dist-web',
 
         /**
          * 类型： string

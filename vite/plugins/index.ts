@@ -2,6 +2,8 @@ import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { visualizer } from 'rollup-plugin-visualizer'
+import electron from 'vite-plugin-electron'
+
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 import { configCompressPlugin } from './compress'
@@ -19,6 +21,9 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
         visualizer({
             // 打包完成后自动打开浏览器，显示产物体积报告
             open: true,
+        }),
+        electron({
+            entry: 'electron/main.js',
         }),
     ]
 

@@ -1,14 +1,14 @@
 {
-    "appId": "YourAppID",
-    "asar": false,
-    "productName": "YourAppName",
+    "appId": "com.gemini.constellation",
+    "productName": "Gemini",
     "directories": {
-        "output": "release/${version}"
+        "output": "dist/${version}"
     },
     "files": [
         "dist",
         "dist-electron"
     ],
+    "asar": true,
     "win": {
         "target": [
             {
@@ -22,14 +22,18 @@
         "oneClick": false,
         "perMachine": false,
         "allowToChangeInstallationDirectory": true,
-        "deleteAppDataOnUninstall": false
+        "deleteAppDataOnUninstall": true
     },
     "mac": {
-        "target": ["dmg"],
-        "artifactName": "${productName}-Mac-${version}-Installer.${ext}"
+        "target": ["dmg", "zip"],
+        "artifactName": "${productName}-Mac-${version}-Installer.${ext}",
+        "category": "public.app-category.utilities"
     },
     "linux": {
         "target": ["AppImage"],
         "artifactName": "${productName}-Linux-${version}.${ext}"
+    },
+    "extraMetadata": {
+        "main": "dist-electron/main.js"
     }
 }

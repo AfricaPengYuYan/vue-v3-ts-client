@@ -3,9 +3,12 @@
     "type": "module",
     "version": "0.0.1",
     "private": true,
-    "description": "vue-v3-ts-client project",
-    "author": "wangXiaoEr",
-    "main": "electron/main.cjs",
+    "description": "vue-v3-ts-client Project",
+    "author": {
+        "name": "wangXiaoEr",
+        "email": "2731800406@qq.com"
+    },
+    "main": "electron/main.js",
     "engines": {
         "node": ">=16.0.0"
     },
@@ -16,7 +19,8 @@
         "preview": "vite preview",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "build:dev:windows64": "electron . --win  --x64"
+        "electron:dev": "concurrently \"vite\" \"wait-on tcp:3000 && electron .\"",
+        "electron:build": "vite build && electron-builder --win --x64"
     },
     "dependencies": {
         "@vueuse/core": "^13.0.0",
@@ -42,6 +46,7 @@
         "@vitejs/plugin-vue": "^5.2.3",
         "@vitejs/plugin-vue-jsx": "^4.1.2",
         "autoprefixer": "^10.4.18",
+        "concurrently": "^9.1.2",
         "consola": "^3.4.2",
         "electron": "^35.1.4",
         "electron-builder": "^26.0.12",
@@ -58,11 +63,13 @@
         "unplugin-vue-components": "^28.4.1",
         "vite": "^6.2.2",
         "vite-plugin-compression": "^0.5.1",
+        "vite-plugin-electron": "^0.29.0",
         "vite-plugin-imagemin": "^0.6.1",
         "vite-plugin-style-import": "^2.0.0",
         "vite-plugin-vue-setup-extend": "^0.4.0",
         "vue-global-api": "^0.4.1",
-        "vue-tsc": "^2.2.8"
+        "vue-tsc": "^2.2.8",
+        "wait-on": "^8.0.3"
     },
     "resolutions": {
         "bin-wrapper": "npm:bin-wrapper-china"
