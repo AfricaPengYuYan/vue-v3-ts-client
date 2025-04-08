@@ -1,6 +1,6 @@
 import type { AxiosInstance, AxiosRequestConfig, CustomParamsSerializer } from 'axios'
 import { HTTP_ERROR_MESSAGES } from '#/http'
-import { useUserInfoStoreHook } from '@/store/modules/userInfo.ts'
+import { useUserInfoStoreHook } from '@/store/modules/userInfo'
 import { formatToken, getToken } from '@/utils/auth'
 import Axios from 'axios'
 import { stringify } from 'qs'

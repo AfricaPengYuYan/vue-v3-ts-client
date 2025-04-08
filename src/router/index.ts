@@ -15,14 +15,14 @@ export const constantRoutes: RouteConfigsTable[] = [
             {
                 path: '/welcome',
                 name: 'Index',
-                component: () => import('@/pages/index'),
+                component: () => import('@/pages/index.vue'),
             },
         ],
     },
     {
         path: '/login',
         name: 'Login',
-        component: () => import('@/pages/login'),
+        component: () => import('@/pages/login.vue'),
         meta: {
             title: '登录',
         },
@@ -30,7 +30,7 @@ export const constantRoutes: RouteConfigsTable[] = [
     {
         path: '/:path(.*)*',
         name: 'PageNotFound',
-        component: () => import('@/pages/error/404'),
+        component: () => import('@/pages/error/404.vue'),
         meta: {
             title: '404',
         },

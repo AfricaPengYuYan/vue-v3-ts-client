@@ -1,4 +1,5 @@
 <script lang="tsx">
+import type { PropType } from 'vue'
 import { ElButton } from 'element-plus'
 import { defineComponent, h } from 'vue'
 
@@ -9,11 +10,11 @@ export default defineComponent({
     props: {
         ...ElButton.props,
         click: {
-            type: Function as PropType<(e: MouseEvent) => void>,
+            type: [Function, undefined] as PropType<((e: MouseEvent) => void) | undefined>,
             default: undefined,
         },
     },
-    setup(props: VButtonProps, { emit, slots, attrs }) {
+    setup(props: VButtonProps, { slots, attrs }) {
         const loading = ref(false)
         const handleClick = async (e: MouseEvent) => {
             loading.value = true

@@ -16,6 +16,7 @@ export default antfu({
             'no-debugger': 'warn', // debugger 使用警告
             'prefer-const': 'error', // 优先使用 const
             'style/comma-dangle': 'off', // 关闭 style/comma-dangle 规则检查
+            'no-unused-vars': 'off', // 允许存在未使用的变量
         },
     },
 
@@ -24,6 +25,7 @@ export default antfu({
         overrides: {
             'ts/consistent-type-imports': 'warn', // 类型导入必须一致
             'ts/no-explicit-any': 'off', // 允许使用 any 类型，因为在某些场景下 any 是必要的
+            'ts/no-unused-vars': 'off', // 允许存在未使用的变量
         },
     },
 

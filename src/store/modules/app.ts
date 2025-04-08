@@ -167,7 +167,7 @@ export const useAppStore = defineStore('app', {
          */
         setCssVarTheme() {
             for (const key in this.theme) {
-                setCssVar(`--${humpToUnderline(key)}`, this.theme[key])
+                setCssVar(`--${humpToUnderline(key)}`, this.theme[key as keyof ThemeTypes])
             }
             this.setPrimaryLight()
         },

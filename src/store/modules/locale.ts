@@ -4,21 +4,24 @@ import en from 'element-plus/es/locale/lang/en'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import { defineStore } from 'pinia'
 
+interface Language {
+    el: Recordable
+    name: string
+}
 interface LocaleDropdownType {
     lang: LocaleType
     name?: string
     elLocale?: Language
 }
-
-const { getStorage, setStorage } = useStorage('localStorage')
-
-const elLocaleMap = {
-    'zh-CN': zhCn,
-    'en': en,
-}
 interface LocaleState {
     currentLocale: LocaleDropdownType
     localeMap: LocaleDropdownType[]
+}
+
+const { getStorage, setStorage } = useStorage('localStorage')
+const elLocaleMap: Record<string, Language> = {
+    'zh-CN': zhCn as Language,
+    'en': en as Language,
 }
 
 export const useLocaleStore = defineStore('locale', {

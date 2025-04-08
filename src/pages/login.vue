@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useForm } from '@/hooks/useForm.ts'
+import { useForm } from '@/hooks/useForm'
 import { useRouter } from 'vue-router'
 
 const $router = useRouter()

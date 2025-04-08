@@ -1,30 +1,32 @@
 {
     "compilerOptions": {
-        "composite": true,          // 启用项目引用功能
-        "module": "ESNext",         // 使用 ESM 模块系统
-        "moduleResolution": "Node", // Node.js 模块解析策略
-        "allowSyntheticDefaultImports": true, // 允许导入没有默认导出的模块
-        "esModuleInterop": true,    // 启用 ES 模块互操作性
-        "strict": true,             // 启用所有严格类型检查
-        "skipLibCheck": true,       // 跳过声明文件检查
-        "resolveJsonModule": true,  // 允许导入 JSON 文件
-        "target": "ESNext",         // 编译目标版本
-        "types": [                  // 需要包含的类型声明
-            "node"                  // Node.js 类型声明
+        "composite": true, // 启用项目引用功能
+        "target": "ESNext", // 编译目标版本
+        "lib": [ // 编译需要包含的 API
+            "ESNext" // 最新的 ECMAScript 特性
         ],
-        "lib": [                    // 编译需要包含的 API
-            "ESNext"                // 最新的 ECMAScript 特性
-        ]
+        "module": "ESNext", // 使用 ESM 模块系统
+        "moduleResolution": "Node", // Node.js 模块解析策略
+        "resolveJsonModule": true, // 允许导入 JSON 文件
+        "types": [ // 需要包含的类型声明
+            "node" // Node.js 类型声明
+        ],
+        "strict": true, // 启用所有严格类型检查
+        "noUnusedLocals": false, // 关闭未使用局部变量的检查
+        "noUnusedParameters": false, // 关闭未使用参数的检查
+        "allowSyntheticDefaultImports": true, // 允许导入没有默认导出的模块
+        "esModuleInterop": true, // 启用 ES 模块互操作性
+        "skipLibCheck": true // 跳过声明文件检查
     },
-    "include": [                    // 构建工具相关文件
-        "vite.config.ts",          // Vite 配置文件
-        "vite/**/*.ts",            // Vite 插件和工具
-        "vite/**/*.d.ts",          // Vite 类型声明
-        "postcss.config.js",       // PostCSS 配置
-        "tailwind.config.js",      // Tailwind 配置
-        "webpack.config.cjs"       // Webpack 配置
+    "include": [ // 构建工具相关文件
+        "vite.config.ts", // Vite 配置文件
+        "vite/**/*.ts", // Vite 插件和工具
+        "vite/**/*.d.ts", // Vite 类型声明
+        "postcss.config.js", // PostCSS 配置
+        "tailwind.config.js", // Tailwind 配置
+        "webpack.config.cjs" // Webpack 配置
     ],
-    "exclude": [                    // 排除应用源码相关文件
+    "exclude": [ // 排除应用源码相关文件
         "src",
         "node_modules",
         "dist"
