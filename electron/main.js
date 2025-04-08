@@ -1,7 +1,7 @@
 import path, { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { app, BrowserWindow } from 'electron'
-import { autoUpdater } from 'electron-updater'
+// import { autoUpdater } from 'electron-updater'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -20,7 +20,6 @@ function createWindow() {
     })
 
     if (idDev) {
-        console.log(process.env)
         WINDOW.loadURL(process.env.VITE_DEV_SERVER_URL)
         // 开启调试台
         WINDOW.webContents.openDevTools()
@@ -65,7 +64,7 @@ function checkForUpdates() {
     })
 }
 
-checkForUpdates()
+// checkForUpdates()
 
 app.whenReady().then(() => {
     createWindow()
