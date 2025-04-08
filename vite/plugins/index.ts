@@ -2,7 +2,6 @@ import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { createHtmlPlugin } from 'vite-plugin-html'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 import { configCompressPlugin } from './compress'
@@ -11,37 +10,12 @@ import { configStyleImportPlugin } from './style'
 import { configAutoImportPlugin, configVueComponentsPlugin, configVueIconsPlugin } from './unplugin'
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
-    const { VITE_USE_IMAGEMIN, VITE_USE_COMPRESS, VITE_COMPRESS_DELETE_ORIGIN_FILE, VITE_LEGACY, VITE_COMPRESSION, VITE_APP_TITLE } = viteEnv
+    const { VITE_USE_IMAGEMIN, VITE_USE_COMPRESS, VITE_COMPRESS_DELETE_ORIGIN_FILE, VITE_LEGACY, VITE_COMPRESSION } = viteEnv
 
     const plugins = [
         vue(),
         vueJsx(),
         vueSetupExtend(),
-        createHtmlPlugin({
-            minify: true,
-            filename: 'index.html',
-            entry: 'src/main.ts',
-            inject: {
-                data: {
-                    title: VITE_APP_TITLE,
-                    template: `
-                        <!doctype html>
-                        <html lang="en">
-                            <head>
-                                <meta charset="UTF-8" />
-                                <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-                                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                                <title><%= title %></title>
-                            </head>
-                            <body>
-                                <div id="app"></div>
-                                <script type="module" src="/src/main.ts"></script>
-                            </body>
-                        </html>
-                    `,
-                },
-            },
-        }),
         visualizer({
             // 打包完成后自动打开浏览器，显示产物体积报告
             open: true,

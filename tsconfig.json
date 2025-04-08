@@ -20,8 +20,8 @@
         // ===== 路径解析配置 =====
         "baseUrl": ".", // 非相对模块导入的基准目录
         "module": "ESNext", // 生成的模块系统代码
-        "moduleResolution": "Node", // 模块解析策略，兼容 vite 和 webpack
-        "paths": { // 路径映射，与 vite/webpack 配置对应
+        "moduleResolution": "Node", // 模块解析策略，兼容 vite
+        "paths": { // 路径映射，与 vite 配置对应
             "~/*": ["./"],
             "@/*": ["./src/*"],
             "#/*": ["./types/*"]
@@ -63,7 +63,6 @@
         "dist",
         "**/*.js",
         ".eslintrc-auto-import.json",
-        "vite",
-        "webpack.config.cjs"
+        "vite"
     ]
 }

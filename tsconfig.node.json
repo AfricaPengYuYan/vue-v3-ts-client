@@ -23,8 +23,7 @@
         "vite/**/*.ts", // Vite 插件和工具
         "vite/**/*.d.ts", // Vite 类型声明
         "postcss.config.js", // PostCSS 配置
-        "tailwind.config.js", // Tailwind 配置
-        "webpack.config.cjs" // Webpack 配置
+        "tailwind.config.js" // Tailwind 配置
     ],
     "exclude": [ // 排除应用源码相关文件
         "src",
