@@ -1,9 +1,6 @@
 {
     "compilerOptions": {
-        // ===== 编译输出配置 =====
         "target": "ESNext", // 编译目标的 ECMAScript 版本
-
-        // ===== Vue 相关配置 =====
         "jsx": "preserve", // 保留 JSX 以供后续转换
         "jsxFactory": "h", // JSX 工厂函数
         "jsxFragmentFactory": "Fragment",
@@ -13,11 +10,8 @@
             "DOM",
             "DOM.Iterable"
         ],
-
-        // ===== 实验性功能和装饰器 =====
         "useDefineForClassFields": true, // 使用 Object.defineProperty 定义类字段
         "experimentalDecorators": true, // 启用装饰器
-        // ===== 路径解析配置 =====
         "baseUrl": ".", // 非相对模块导入的基准目录
         "module": "ESNext", // 生成的模块系统代码
         "moduleResolution": "Node", // 模块解析策略，兼容 vite
@@ -26,24 +20,18 @@
             "@/*": ["./src/*"],
             "#/*": ["./types/*"]
         },
-
-        // ===== 模块和导入配置 =====
         "resolveJsonModule": true, // 允许导入 JSON 模块
         "types": [ // 需要包含的类型声明文件
             "node",
             "vite/client",
             "element-plus/global"
         ],
-
-        // ===== 类型检查配置 =====
         "strict": true, // 启用所有严格类型检查选项
         "noImplicitThis": true, // 禁止 this 有隐含的 any 类型
         "noUnusedLocals": false, // 关闭未使用局部变量的检查
         "noUnusedParameters": false, // 关闭未使用参数的检查
-
         "importHelpers": true, // 从 tslib 导入辅助工具函数
         "noEmit": true, // 不输出文件
-        // ===== 构建相关配置 =====
         "sourceMap": true, // 生成源映射文件
         "allowSyntheticDefaultImports": true, // 允许从没有默认导出的模块中默认导入
         "esModuleInterop": true, // 启用 ES 模块互操作性
