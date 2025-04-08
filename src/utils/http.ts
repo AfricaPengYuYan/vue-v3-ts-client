@@ -19,8 +19,6 @@ const defaultConfig: AxiosRequestConfig = {
     paramsSerializer: {
         serialize: stringify as unknown as CustomParamsSerializer,
     },
-    // 添加基础配置
-    baseURL: import.meta.env.VITE_API_URL,
     timeoutErrorMessage: '请求超时，请稍后重试',
 }
 

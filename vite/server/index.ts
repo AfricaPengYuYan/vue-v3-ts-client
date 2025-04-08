@@ -35,7 +35,7 @@ export function createViteServer(viteEnv: ViteEnv) {
         https: false,
         // IP配置，支持从IP启动
         host: '0.0.0.0',
-        // 本地跨域代理
+        // 本地跨域代理 https://cn.vitejs.dev/config/server-options.html#server-proxy
         proxy,
         // 预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布
         warmup: {
